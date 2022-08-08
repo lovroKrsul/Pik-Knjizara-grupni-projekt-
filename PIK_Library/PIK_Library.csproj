@@ -58,6 +58,7 @@
     <Compile Include="DAL\DBRepo.cs" />
     <Compile Include="DAL\IRepo.cs" />
     <Compile Include="DAL\RepoFactory.cs" />
+    <Compile Include="Model\Author.cs" />
     <Compile Include="Model\Criptography.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
