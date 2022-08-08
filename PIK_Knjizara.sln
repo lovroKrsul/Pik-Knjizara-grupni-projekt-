@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PIK_Knjizara", "PIK_Knjizara\PIK_Knjizara.csproj", "{56BBEBCD-F05D-4A72-97ED-BC702539B1A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PIK_Library", "PIK_Library\PIK_Library.csproj", "{0B7D2176-4E1E-4D94-BF48-66E6513D7E57}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{56BBEBCD-F05D-4A72-97ED-BC702539B1A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56BBEBCD-F05D-4A72-97ED-BC702539B1A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56BBEBCD-F05D-4A72-97ED-BC702539B1A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56BBEBCD-F05D-4A72-97ED-BC702539B1A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B7D2176-4E1E-4D94-BF48-66E6513D7E57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B7D2176-4E1E-4D94-BF48-66E6513D7E57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B7D2176-4E1E-4D94-BF48-66E6513D7E57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B7D2176-4E1E-4D94-BF48-66E6513D7E57}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AAE135CA-15CC-4184-BFF8-A0E9B3FF2794}
+	EndGlobalSection
+EndGlobal
