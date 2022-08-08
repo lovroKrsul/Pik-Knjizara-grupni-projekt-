@@ -1,0 +1,21 @@
+﻿@model PIK_Library.Model.Author
+
+@{
+    ViewBag.Title = "View";
+}
+
+<h1 style="text-align:center">@Model.FirstName @Model.LastName</h1>
+<p style="text-align:center">@Model.Description</p>
+<p style="text-align:center">@Model.Biography</p>
+
+<div id="partial" style="margin-top:20px">
+
+</div>
+@section Scripts
+    {
+    <script>
+        $('#partial').load("/Author/LoadBooks")
+    </script>
+}
+
+

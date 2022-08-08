@@ -1,0 +1,28 @@
+﻿@model IEnumerable<PIK_Library.Model.Book>
+
+@foreach (var item in Model)
+{
+    <!--TREBA PROMJENIT KAD DODAMO STRANICU KNJIGE DA MATCHA KONTROLER/STRANICU -->
+    <div style="background-color:gray" href="@Url.Action("BookDetailsPage","Book")">
+        <img src=">@item.Cover" />
+        @Html.
+        @Html.DisplayNameFor(model => model.Title)
+        @Html.DisplayFor(modelItem => item.Title)
+
+        @Html.DisplayNameFor(model => model.Author)
+        @Html.DisplayFor(modelItem => item.Author)
+
+        @Html.DisplayNameFor(model => model.Used)
+        @Html.DisplayFor(modelItem => item.Used)
+
+        @Html.DisplayNameFor(model => model.InStock)
+        @Html.DisplayFor(modelItem => item.InStock)
+
+        @Html.DisplayNameFor(model => model.Description)
+        @Html.DisplayFor(modelItem => item.Description)
+
+
+        <div class="btn btn - success btn - sm glyphicon glyphicon - remove">@item.Price</div>
+    </div>
+}
+
