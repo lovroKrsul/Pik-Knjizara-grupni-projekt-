@@ -1,0 +1,31 @@
+﻿@model PIK_Library.Model.Author
+@using PIK_Library.Dal;
+
+@{
+    ViewBag.Title = "DeleteAuthor";
+}
+
+<h2>Brisanje autora</h2>
+
+<h3>Sigurno zelite izbrisati?</h3>
+<div>
+    <h4>Author</h4>
+    @{List<string> authors = new List<string>();
+        foreach (PIK_Library.Model.Author a in ViewBag.authors)
+        {
+            authors.Add(a.FirstName + " " + a.LastName);
+        }
+    }
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.DropDownList("Author:", new SelectList(authors))
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Briši" class="btn btn-danger" /> |
+            @Html.ActionLink("Natrag", "Index")
+        </div>
+    }
+</div>

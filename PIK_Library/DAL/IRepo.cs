@@ -14,6 +14,14 @@ namespace PIK_Library.Dal
         User LoadUser(string email);
         User LoadUserId(int id);
         void AddUser(User item);
+        User ResetPasswordUser(string email);
+
+        int AddAuthor(Author a);
+        IList<Author> LoadAuthors();
+        Author LoadAuthorByName(string name);
+        int UpdateAuthorByName(Author a);
+        int DeleteAuthorByName(string name);
+        
         void UpdateUser(User user);
         void ResetPassword(User user);
         void DeleteUser(User user);

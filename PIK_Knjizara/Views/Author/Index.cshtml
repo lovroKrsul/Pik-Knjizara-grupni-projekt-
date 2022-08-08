@@ -1,0 +1,11 @@
+﻿@model PIK_Library.Model.Author
+
+@{
+    ViewBag.Title = "View";
+}
+
+<h2>Ovo ce bit promjenjeno u detalje o autoru i lista knjiga</h2>
+
+@Html.ActionLink("Add", "Create", "Author", new { @class = "btn btn-outline-dark" })
+@Html.ActionLink("Edit", "Edit", "Author", new { @class = "btn btn-outline-dark" })
+@Html.ActionLink("Delete", "Delete", "Author", new { @class = "btn btn-outline-dark" })
