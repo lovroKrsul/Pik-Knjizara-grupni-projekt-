@@ -12,8 +12,10 @@ namespace PIK_Library.Dal
         User AuthenticateUser(string username, string password);
         IList<User> LoadUsers();
         User LoadUser(string email);
+        User LoadUserId(int id);
         void AddUser(User item);
         void UpdateUser(User user);
         void ResetPassword(User user);
+        void DeleteUser(User user);
     }
 }

@@ -6,7 +6,6 @@
 
 <h2>Registration</h2>
 
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -55,12 +54,6 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Update" class="btn btn-outline-success" />
-                </div>
-            </div>
-
         </div>
         <div class="w-100">
 
@@ -99,6 +92,33 @@
             @Html.HiddenFor(model => model.Password)
             @Html.HiddenFor(model => model.IdUser)
         </div>
+
+    </div>
+    <div class="d-flex flex-row">
+        <div class="m-1">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Update" class="btn btn-outline-success" />
+            </div>
+        </div>
+
+        <div class="m-1">
+            <input id="btnDelete" type="button" value="Delete" class="btn btn-danger" />
+        </div>
     </div>
 }
 
+@section scripts{
+    <script>
+        $("#btnDelete").on('click', function () {
+            var dialog = confirm("Delete account");
+            if (dialog) {
+                $.ajax({
+                    url: '@Url.Action("Delete", "User")',
+                    data: { id: @Model.IdUser}
+                })
+            } else {
+                console.log("Not");
+            }
+        })
+    </script>
+}

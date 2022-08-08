@@ -103,5 +103,21 @@ namespace PIK_Knjizara.Controllers
 
             return View();
         }
+
+        public ActionResult Delete(int id)
+        {
+            IRepo repo = (System.Web.HttpContext.Current.Application["database"] as IRepo);
+            User user = repo.LoadUserId(id);
+            user.FirstName = Cryptography.HashPassword(user.FirstName);
+            user.LastName = user.FirstName;
+            user.Email = user.FirstName;
+            user.Password = user.FirstName;
+            user.ZipCode = user.FirstName;
+            user.StreetName = user.FirstName;
+            user.StreetNumber = user.FirstName;
+
+            repo.DeleteUser(user);
+            return RedirectToAction("LogOut", "Home");
+        }
     }
 }

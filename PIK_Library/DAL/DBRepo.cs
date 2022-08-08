@@ -82,8 +82,7 @@ namespace PIK_Library.DAL
 
         public User LoadUser(string email)
         {
-
-            var tblUsers = SqlHelper.ExecuteDataset(CS, nameof(LoadUsers)).Tables[0];
+            var tblUsers = SqlHelper.ExecuteDataset(CS, nameof(LoadUser), email).Tables[0];
 
             if (tblUsers.Rows.Count == 0) return null;
 
@@ -103,7 +102,30 @@ namespace PIK_Library.DAL
                 OIB = row[nameof(User.OIB)].ToString(),
                 Workplace = row[nameof(User.Workplace)].ToString()
             };
+        }
 
+        public User LoadUserId(int id)
+        {
+            var tblUsers = SqlHelper.ExecuteDataset(CS, nameof(LoadUserId), id).Tables[0];
+
+            if (tblUsers.Rows.Count == 0) return null;
+
+            DataRow row = tblUsers.Rows[0];
+            return new User
+            {
+                IdUser = (int)row[nameof(User.IdUser)],
+                PersonCode = row[nameof(User.PersonCode)].ToString(),
+                FirstName = row[nameof(User.FirstName)].ToString(),
+                LastName = row[nameof(User.LastName)].ToString(),
+                Email = row[nameof(User.Email)].ToString(),
+                Password = row[nameof(User.Password)].ToString(),
+                City = row[nameof(User.City)].ToString(),
+                ZipCode = row[nameof(User.ZipCode)].ToString(),
+                StreetName = row[nameof(User.StreetName)].ToString(),
+                StreetNumber = row[nameof(User.StreetNumber)].ToString(),
+                OIB = row[nameof(User.OIB)].ToString(),
+                Workplace = row[nameof(User.Workplace)].ToString()
+            };
         }
 
         //-------------------------------------------------------------------------------- Data insert --------------------------------------------------------------------------------
@@ -143,6 +165,21 @@ namespace PIK_Library.DAL
                 user.StreetNumber,
                 user.OIB,
                 user.Workplace);
+        }
+
+        //-------------------------------------------------------------------------------- Data delete --------------------------------------------------------------------------------
+        public void DeleteUser(User user)
+        {
+            SqlHelper.ExecuteNonQuery(
+                CS,
+                nameof(DeleteUser),
+                user.FirstName,
+                user.LastName,
+                user.Email,
+                user.Password,
+                user.ZipCode,
+                user.StreetName,
+                user.StreetNumber);
         }
     }
 }
