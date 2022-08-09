@@ -9,21 +9,31 @@ namespace PIK_Library.Dal
 {
     public interface IRepo
     {
+        //---------------------User-----------------------------
+
         User AuthenticateUser(string username, string password);
         IList<User> LoadUsers();
         User LoadUser(string email);
         User LoadUserId(int id);
-        void AddUser(User item);
-        User ResetPasswordUser(string email);
-
-        int AddAuthor(Author a);
-        IList<Author> LoadAuthors();
-        Author LoadAuthorByName(string name);
-        int UpdateAuthorByName(Author a);
-        int DeleteAuthorByName(string name);
-        
+        void AddUser(User user);
         void UpdateUser(User user);
         void ResetPassword(User user);
         void DeleteUser(User user);
+
+        //---------------------Author-----------------------------------
+        int AddAuthor(Author a);
+        IList<Author> LoadAuthors();
+        Author LoadAuthor(int id);
+        Author LoadAuthorByName(string name);
+        int UpdateAuthorByName(Author a);
+        int DeleteAuthorByName(string name);
+
+
+        //---------------------Book------------------------------------
+        IList<Book> LoadBooks();
+        Book LoadBook(int id);
+        void AddBook(Book book);
+        void UpdateBook(Book book);
+        void DeleteBook(Book book);
     }
 }

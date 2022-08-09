@@ -15,7 +15,7 @@ namespace PIK_Library.DAL
     {
         private static readonly string CS = ConfigurationManager.ConnectionStrings["cs"].ConnectionString;
 
-        //-------------------------------------------------------------------------------- Authentication --------------------------------------------------------------------------------
+        //-------------------------------------------------------------------------------- User --------------------------------------------------------------------------------
         public User AuthenticateUser(string username, string password)
         {
             var tblAuthenticate = SqlHelper.ExecuteDataset(CS, nameof(AuthenticateUser), username, password).Tables[0];
@@ -39,7 +39,15 @@ namespace PIK_Library.DAL
             };
         }
 
-        //-------------------------------------------------------------------------------- Load lists --------------------------------------------------------------------------------
+        public void ResetPassword(User user)
+        {
+            SqlHelper.ExecuteNonQuery(
+                CS,
+                nameof(ResetPassword),
+                user.Email,
+                user.Password);
+        }
+
         public IList<User> LoadUsers()
         {
             IList<User> users = new List<User>();
@@ -69,9 +77,8 @@ namespace PIK_Library.DAL
             return users;
         }
 
-        //-------------------------------------------------------------------------------- Load lists --------------------------------------------------------------------------------
 
-        public User ResetPasswordUser(string email)
+        public User LoadUser(string email)
         {
             var tblUsers = SqlHelper.ExecuteDataset(CS, nameof(LoadUser), email).Tables[0];
 
@@ -118,8 +125,26 @@ namespace PIK_Library.DAL
                 Workplace = row[nameof(User.Workplace)].ToString()
             };
         }
+        
+        public void UpdateUser(User user)
+        {
+            SqlHelper.ExecuteNonQuery(
+                CS,
+                nameof(UpdateUser),
+                user.IdUser,
+                user.PersonCode,
+                user.FirstName,
+                user.LastName,
+                user.Email,
+                user.Password,
+                user.City,
+                user.ZipCode,
+                user.StreetName,
+                user.StreetNumber,
+                user.OIB,
+                user.Workplace);
+        }
 
-        //-------------------------------------------------------------------------------- Data insert --------------------------------------------------------------------------------
         public void AddUser(User user)
         {
             SqlHelper.ExecuteNonQuery(
@@ -137,7 +162,22 @@ namespace PIK_Library.DAL
                 user.OIB,
                 user.Workplace);
         }
-        //-------------------------------------------------------------------------------- Add Author --------------------------------------------------------------------------------
+
+        public void DeleteUser(User user)
+        {
+            SqlHelper.ExecuteNonQuery(
+                CS,
+                nameof(DeleteUser),
+                user.FirstName,
+                user.LastName,
+                user.Email,
+                user.Password,
+                user.ZipCode,
+                user.StreetName,
+                user.StreetNumber);
+        }
+
+        //-------------------------------------------------------------------------------- Author --------------------------------------------------------------------------------
         public int AddAuthor(Author a)
         {
             int i = 0;
@@ -157,7 +197,7 @@ namespace PIK_Library.DAL
             }
             return i;
         }
-        //-------------------------------------------------------------------------------- Get All Authors --------------------------------------------------------------------------------
+
         public IList<Author> LoadAuthors()
         {
             IList<Author> authors = new List<Author>();
@@ -178,7 +218,7 @@ namespace PIK_Library.DAL
                 });
             return authors;
         }
-        //-------------------------------------------------------------------------------- Update Author By Name --------------------------------------------------------------------------------
+
         public int UpdateAuthorByName(Author a)
         {
             int i = 0;
@@ -195,6 +235,11 @@ namespace PIK_Library.DAL
                 return -1;
             }
             return i;
+        }
+
+        public Author LoadAuthor(int id)
+        {
+            throw new NotImplementedException();
         }
 
         public Author LoadAuthorByName(string name)
@@ -236,19 +281,88 @@ namespace PIK_Library.DAL
             return i;
         }
 
-        //-------------------------------------------------------------------------------- Data delete --------------------------------------------------------------------------------
-        public void DeleteUser(User user)
+        //-------------------------------------------------------------------------------- User --------------------------------------------------------------------------------
+
+        public IList<Book> LoadBooks()
+        {
+            IList<Book> books = new List<Book>();
+
+            var tblBooks = SqlHelper.ExecuteDataset(CS, nameof(LoadBooks)).Tables[0];
+
+            foreach (DataRow row in tblBooks.Rows)
+            {
+                books.Add(
+                    new Book
+                    {
+                        IdBook = (int)row[nameof(Book.IdBook)],
+                        Name = row[nameof(Book.IdBook)].ToString(),
+                        Author = LoadAuthor((int)row[nameof(Book.Author)]),
+                        Description = row[nameof(Book.IdBook)].ToString(),
+                        IBAN = row[nameof(Book.IdBook)].ToString(),
+                        Info = row[nameof(Book.IdBook)].ToString(),
+                        Other = row[nameof(Book.IdBook)].ToString(),
+                        Price = (double)row[nameof(Book.IdBook)]
+                    });
+            }
+
+            return books;
+        }
+
+        public Book LoadBook(int id)
+        {
+            var tblBook = SqlHelper.ExecuteDataset(CS, nameof(LoadBook), id).Tables[0];
+
+            if (tblBook.Rows.Count == 0) return null;
+
+            DataRow row = tblBook.Rows[0];
+            return new Book
+            {
+                IdBook = (int)row[nameof(Book.IdBook)],
+                Name = row[nameof(Book.IdBook)].ToString(),
+                Author = LoadAuthor((int)row[nameof(Book.Author)]),
+                Description = row[nameof(Book.IdBook)].ToString(),
+                IBAN = row[nameof(Book.IdBook)].ToString(),
+                Info = row[nameof(Book.IdBook)].ToString(),
+                Other = row[nameof(Book.IdBook)].ToString(),
+                Price = (double)row[nameof(Book.IdBook)]
+            };
+        }
+
+        public void AddBook(Book book)
         {
             SqlHelper.ExecuteNonQuery(
                 CS,
-                nameof(DeleteUser),
-                user.FirstName,
-                user.LastName,
-                user.Email,
-                user.Password,
-                user.ZipCode,
-                user.StreetName,
-                user.StreetNumber);
+                nameof(AddBook),
+                book.Name,
+                book.Author,
+                book.Description,
+                book.IBAN,
+                book.Info,
+                book.Other,
+                book.Price);
+        }
+
+        public void UpdateBook(Book book)
+        {
+            SqlHelper.ExecuteNonQuery(
+                CS,
+                nameof(UpdateBook),
+                book.IdBook,
+                book.Name,
+                book.Author,
+                book.Description,
+                book.IBAN,
+                book.Info,
+                book.Other,
+                book.Price);
+        }
+
+        public void DeleteBook(Book book)
+        {
+            SqlHelper.ExecuteNonQuery(
+                CS,
+                nameof(UpdateBook),
+                book.IdBook);
         }
     }
 }
