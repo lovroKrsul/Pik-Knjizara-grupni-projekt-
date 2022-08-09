@@ -33,7 +33,7 @@ namespace FillDb.Repo
 
             for (int i = 0; i < lines.Length; i++)
             {
-
+                lines[i] = lines[i];
             }
             
             //books = GetData<IList<Book>>(PATH);
