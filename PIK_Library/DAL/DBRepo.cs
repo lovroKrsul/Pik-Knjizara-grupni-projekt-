@@ -295,7 +295,7 @@ namespace PIK_Library.DAL
                     new Book
                     {
                         IdBook = (int)row[nameof(Book.IdBook)],
-                        Name = row[nameof(Book.IdBook)].ToString(),
+                        Title = row[nameof(Book.IdBook)].ToString(),
                         Author = LoadAuthor((int)row[nameof(Book.Author)]),
                         Description = row[nameof(Book.IdBook)].ToString(),
                         IBAN = row[nameof(Book.IdBook)].ToString(),
@@ -318,7 +318,7 @@ namespace PIK_Library.DAL
             return new Book
             {
                 IdBook = (int)row[nameof(Book.IdBook)],
-                Name = row[nameof(Book.IdBook)].ToString(),
+                Title = row[nameof(Book.IdBook)].ToString(),
                 Author = LoadAuthor((int)row[nameof(Book.Author)]),
                 Description = row[nameof(Book.IdBook)].ToString(),
                 IBAN = row[nameof(Book.IdBook)].ToString(),
@@ -333,7 +333,7 @@ namespace PIK_Library.DAL
             SqlHelper.ExecuteNonQuery(
                 CS,
                 nameof(AddBook),
-                book.Name,
+                book.Title,
                 book.Author,
                 book.Description,
                 book.IBAN,
@@ -348,7 +348,7 @@ namespace PIK_Library.DAL
                 CS,
                 nameof(UpdateBook),
                 book.IdBook,
-                book.Name,
+                book.Title,
                 book.Author,
                 book.Description,
                 book.IBAN,
