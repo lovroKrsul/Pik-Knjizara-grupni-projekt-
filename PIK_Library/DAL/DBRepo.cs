@@ -239,7 +239,12 @@ namespace PIK_Library.DAL
 
         public Author LoadAuthor(int id)
         {
-            throw new NotImplementedException();
+            return new Author
+            {
+                ID = "1",
+                FirstName = "pero",
+                LastName = "peric"
+            };
         }
 
         public Author LoadAuthorByName(string name)
@@ -281,7 +286,7 @@ namespace PIK_Library.DAL
             return i;
         }
 
-        //-------------------------------------------------------------------------------- User --------------------------------------------------------------------------------
+        //-------------------------------------------------------------------------------- Book --------------------------------------------------------------------------------
 
         public IList<Book> LoadBooks()
         {
@@ -295,13 +300,18 @@ namespace PIK_Library.DAL
                     new Book
                     {
                         IdBook = (int)row[nameof(Book.IdBook)],
-                        Title = row[nameof(Book.IdBook)].ToString(),
-                        Author = LoadAuthor((int)row[nameof(Book.Author)]),
-                        Description = row[nameof(Book.IdBook)].ToString(),
-                        IBAN = row[nameof(Book.IdBook)].ToString(),
-                        Info = row[nameof(Book.IdBook)].ToString(),
-                        Other = row[nameof(Book.IdBook)].ToString(),
-                        Price = (double)row[nameof(Book.IdBook)]
+                        Title = row[nameof(Book.Title)].ToString(),
+                        AuthorId = (int)row[nameof(Book.AuthorId)],
+                        Author = LoadAuthor((int)row[nameof(Book.AuthorId)]),
+                        Description = row[nameof(Book.Description)].ToString(),
+                        ISBN = row[nameof(Book.ISBN)].ToString(),
+                        Used = (bool)row[nameof(Book.Used)],
+                        InStock = (int)row[nameof(Book.InStock)],
+                        Price = (decimal)row[nameof(Book.Price)],
+                        Cover = row[nameof(Book.Cover)].ToString(),
+                        Publisher = row[nameof(Book.Publisher)].ToString(),
+                        Ganre = row[nameof(Book.Ganre)].ToString(),
+                        Tags = row[nameof(Book.Tags)].ToString()
                     });
             }
 
@@ -318,13 +328,18 @@ namespace PIK_Library.DAL
             return new Book
             {
                 IdBook = (int)row[nameof(Book.IdBook)],
-                Title = row[nameof(Book.IdBook)].ToString(),
-                Author = LoadAuthor((int)row[nameof(Book.Author)]),
-                Description = row[nameof(Book.IdBook)].ToString(),
-                IBAN = row[nameof(Book.IdBook)].ToString(),
-                Info = row[nameof(Book.IdBook)].ToString(),
-                Other = row[nameof(Book.IdBook)].ToString(),
-                Price = (double)row[nameof(Book.IdBook)]
+                Title = row[nameof(Book.Title)].ToString(),
+                AuthorId = (int)row[nameof(Book.AuthorId)],
+                Author = LoadAuthor((int)row[nameof(Book.AuthorId)]),
+                Description = row[nameof(Book.Description)].ToString(),
+                ISBN = row[nameof(Book.ISBN)].ToString(),
+                Used = (bool)row[nameof(Book.Used)],
+                InStock = (int)row[nameof(Book.InStock)],
+                Price = (decimal)row[nameof(Book.Price)],
+                Cover = row[nameof(Book.Cover)].ToString(),
+                Publisher = row[nameof(Book.Publisher)].ToString(),
+                Ganre = row[nameof(Book.Ganre)].ToString(),
+                Tags = row[nameof(Book.Tags)].ToString()
             };
         }
 
@@ -334,12 +349,16 @@ namespace PIK_Library.DAL
                 CS,
                 nameof(AddBook),
                 book.Title,
-                book.Author,
+                book.Author.ID,
                 book.Description,
-                book.IBAN,
-                book.Info,
-                book.Other,
-                book.Price);
+                book.ISBN,
+                book.Used,
+                book.InStock,
+                book.Price,
+                book.Cover,
+                book.Publisher,
+                book.Ganre,
+                book.Tags);
         }
 
         public void UpdateBook(Book book)
@@ -349,12 +368,16 @@ namespace PIK_Library.DAL
                 nameof(UpdateBook),
                 book.IdBook,
                 book.Title,
-                book.Author,
+                book.Author.ID,
                 book.Description,
-                book.IBAN,
-                book.Info,
-                book.Other,
-                book.Price);
+                book.ISBN,
+                book.Used,
+                book.InStock,
+                book.Price,
+                book.Cover,
+                book.Publisher,
+                book.Ganre,
+                book.Tags);
         }
 
         public void DeleteBook(Book book)

@@ -177,3 +177,22 @@ update Author set Description=@Description where (Author.FirstName=@FirstName an
 update Author set Biography=@Biography where (Author.FirstName=@FirstName and Author.LastName=@LastName)
 End
 GO
+
+---------------------------------------------------------Book----------------------------------------------
+GO
+CREATE OR ALTER PROC LoadBooks
+AS
+BEGIN 
+	SELECT * FROM Book
+END
+GO
+
+CREATE OR ALTER PROC LoadBook
+	@BookId INT
+AS
+BEGIN 
+	SELECT *
+	FROM Book
+	WHERE IDBook = @BookId
+END
+GO

@@ -267,10 +267,11 @@
     <Content Include="Views\Author\DeleteAuthor.cshtml" />
     <Content Include="Views\Author\Index.cshtml" />
     <Content Include="Views\Author\UpdateAuthor.cshtml" />
+    <Content Include="Views\Book\Index.cshtml" />
+    <Content Include="Views\Book\_GetBooks.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Book\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.min.css.map" />
