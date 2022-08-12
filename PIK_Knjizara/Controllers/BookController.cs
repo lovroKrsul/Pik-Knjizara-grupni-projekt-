@@ -24,5 +24,9 @@ namespace PIK_Knjizara.Controllers
             return View(books);
         }
 
+        public ActionResult AddBook()
+        {
+            return View();
+        }
     }
 }

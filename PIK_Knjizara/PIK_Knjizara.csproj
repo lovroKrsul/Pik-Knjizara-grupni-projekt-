@@ -142,6 +142,7 @@
     </Compile>
     <Compile Include="Models\Validation\BoolRequired.cs" />
     <Compile Include="Models\ForgotPasswordModel.cs" />
+    <Compile Include="Models\ViewModels\AddBookVM.cs" />
     <Compile Include="Models\ViewModels\BookVM.cs" />
     <Compile Include="Models\ViewModels\PasswordResetVM.cs" />
     <Compile Include="Models\ViewModels\RegisterViewModel.cs" />
@@ -272,6 +273,7 @@
     <Content Include="Views\Book\_NewBook.cshtml" />
     <Content Include="Views\Book\Index.cshtml" />
     <Content Include="Views\Book\_UsedBook.cshtml" />
+    <Content Include="Views\Book\AddBook.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
