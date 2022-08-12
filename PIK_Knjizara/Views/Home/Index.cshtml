@@ -1,1 +1,9 @@
-﻿<h1>Index</h1>
+﻿@model IEnumerable<PIK_Library.Model.Book>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@Html.Partial("_GetBooks", Model)

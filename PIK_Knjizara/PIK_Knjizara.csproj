@@ -268,7 +268,7 @@
     <Content Include="Views\Author\Index.cshtml" />
     <Content Include="Views\Author\UpdateAuthor.cshtml" />
     <Content Include="Views\Book\Index.cshtml" />
-    <Content Include="Views\Book\_GetBooks.cshtml" />
+    <Content Include="Views\Shared\_GetBooks.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -27,3 +27,8 @@ textarea {
 #map {
     height: 460px;
 }
+
+.image{
+    height: 250px;
+    width: 175px;
+}

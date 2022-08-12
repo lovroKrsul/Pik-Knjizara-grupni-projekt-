@@ -1,0 +1,46 @@
+﻿@model IEnumerable<PIK_Library.Model.Book>
+
+<div class="d-flex flex-row flex-wrap">
+
+    @foreach (var item in Model)
+    {
+        <div class="card m-3" style="width: 15rem;">
+            <img class="image" src="@item.Cover" alt="Picture" />
+
+            <div class="card-body">
+
+                <div class="d-flex flex-row">
+                    <div class="w-75">
+                        <h4>
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </h4>
+                        <h5>
+                            @Html.DisplayFor(modelItem => item.Author)
+                        </h5>
+
+                        <p>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </p>
+
+                        @if (item.InStock > 0)
+                        {
+                            <span>In stock</span>
+                        }
+                        else
+                        {
+                            <span>Not in stock</span>
+                        }
+
+                        <h5>
+                            @Html.DisplayFor(modelItem => item.Price) EUR
+                        </h5>
+
+                        <div class="d-flex flex-column-reverse">
+                            @Html.ActionLink("Buy", "Index", "Book", new { Id = item.IdBook }, new { @class = "btn btn-outline-dark" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

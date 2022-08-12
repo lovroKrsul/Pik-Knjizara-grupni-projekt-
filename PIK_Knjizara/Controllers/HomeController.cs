@@ -15,7 +15,12 @@ namespace PIK_Knjizara.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            IList<Book> books = (System.Web.HttpContext.Current.Application["database"] as IRepo).LoadBooks();
+            foreach (Book book in books)
+            {
+                book.Cover = "data:image/jpeg;base64," + book.Cover;
+            }
+            return View(books);
         }
 
 
