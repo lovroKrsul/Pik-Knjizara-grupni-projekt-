@@ -103,7 +103,19 @@ namespace PIK_Knjizara.Controllers
                 return View("DeleteAuthor");
             }
         }
-
+        
+        public ActionResult AuthorDetails(int id)
+        {
+            return View("AuthorDetails", model: repo.LoadAuthor(id));
+        }
+        public ActionResult LoadBooks(int id)
+        {
+            IList<Book> Books = new List<Book>();
+            Books = (IList<Book>)repo.LoadBooks().Where(Book => Book.IdBook == id);
+            return PartialView("_AuthorBooks", model: Books);
+        }
 
     }
+
+}
 }
