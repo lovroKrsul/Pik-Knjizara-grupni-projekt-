@@ -142,6 +142,7 @@
     </Compile>
     <Compile Include="Models\Validation\BoolRequired.cs" />
     <Compile Include="Models\ForgotPasswordModel.cs" />
+    <Compile Include="Models\ViewModels\BookVM.cs" />
     <Compile Include="Models\ViewModels\PasswordResetVM.cs" />
     <Compile Include="Models\ViewModels\RegisterViewModel.cs" />
     <Compile Include="Models\ViewModels\UpdateUserModel.cs" />
@@ -267,8 +268,10 @@
     <Content Include="Views\Author\DeleteAuthor.cshtml" />
     <Content Include="Views\Author\Index.cshtml" />
     <Content Include="Views\Author\UpdateAuthor.cshtml" />
-    <Content Include="Views\Book\Index.cshtml" />
     <Content Include="Views\Shared\_GetBooks.cshtml" />
+    <Content Include="Views\Book\_NewBook.cshtml" />
+    <Content Include="Views\Book\Index.cshtml" />
+    <Content Include="Views\Book\_UsedBook.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

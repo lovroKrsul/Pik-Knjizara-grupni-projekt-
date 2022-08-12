@@ -1,0 +1,94 @@
+﻿@model PIK_Library.Model.Book
+
+<div class="d-flex flex-wrap">
+    <div class="w-50">
+        <h1>
+            @Html.DisplayFor(model => model.Title)
+        </h1>
+        <h3>
+            @Html.DisplayFor(model => model.Author)
+        </h3>
+        <img class="image" src="@Model.Cover" alt="Picture" />
+    </div>
+
+    <div class="w-50">
+        <div class="d-flex flex-row">
+            <div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <span>
+                            @Html.DisplayNameFor(model => model.Price):
+                            @Html.DisplayFor(model => model.Price) eur
+                        </span>
+                    </li>
+                    <li class="list-group-item">
+                        <span>
+                            Borrow price per week:
+                            @Html.DisplayFor(model => model.BorrowPrice)
+                        </span>
+                    </li>
+                    <li class="list-group-item">
+                        <span>
+                            @Html.DisplayNameFor(model => model.InStock):
+                            @if (Model.InStock > 0)
+                            {
+                                <span>Yes</span>
+                            }
+                            else
+                            {
+                                <span>No</span>
+                            }
+                        </span>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <div class="m-3">
+                    @Html.ActionLink("Buy", "Index", "Buy", new { Id = Model.IdBook }, new { @class = "btn btn-outline-dark" })
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <span>
+                        @Html.DisplayNameFor(model => model.Description):
+                        <br />
+                        @Html.DisplayFor(model => model.Description)
+                    </span>
+                </li>
+                <li class="list-group-item">
+                    <span>
+                        @Html.DisplayNameFor(model => model.Publisher):
+                        @Html.DisplayFor(model => model.Publisher)
+                    </span>
+                </li>
+                <li class="list-group-item">
+                    <span>
+                        @Html.DisplayNameFor(model => model.Ganre):
+                        @Html.DisplayFor(model => model.Ganre)
+                    </span>
+                </li>
+                <li class="list-group-item">
+                    <span>
+                        @Html.DisplayNameFor(model => model.Tags):
+                        @Html.DisplayFor(model => model.Tags)
+                    </span>
+                </li>
+                <li class="list-group-item">
+                    <span>
+                        @Html.DisplayNameFor(model => model.ReleasYear):
+                        @Html.DisplayFor(model => model.ReleasYear)
+                    </span>
+                </li>
+                <li class="list-group-item">
+                    <span>
+                        @Html.DisplayNameFor(model => model.ISBN):
+                        @Html.DisplayFor(model => model.ISBN)
+                    </span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

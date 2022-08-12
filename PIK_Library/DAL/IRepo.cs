@@ -32,6 +32,7 @@ namespace PIK_Library.Dal
         //---------------------Book------------------------------------
         IList<Book> LoadBooks();
         Book LoadBook(int id);
+        Book LoadBookUsed(string title);
         void AddBook(Book book);
         void UpdateBook(Book book);
         void DeleteBook(Book book);

@@ -344,6 +344,31 @@ namespace PIK_Library.DAL
                 Tags = row[nameof(Book.Tags)].ToString()
             };
         }
+        public Book LoadBookUsed(string title)
+        {
+            var tblBook = SqlHelper.ExecuteDataset(CS, nameof(LoadBookUsed), title).Tables[0];
+
+            if (tblBook.Rows.Count == 0) return null;
+
+            DataRow row = tblBook.Rows[0];
+            return new Book
+            {
+                IdBook = (int)row[nameof(Book.IdBook)],
+                Title = row[nameof(Book.Title)].ToString(),
+                AuthorId = (int)row[nameof(Book.AuthorId)],
+                Author = LoadAuthor((int)row[nameof(Book.AuthorId)]),
+                Description = row[nameof(Book.Description)].ToString(),
+                ISBN = row[nameof(Book.ISBN)].ToString(),
+                Used = (bool)row[nameof(Book.Used)],
+                InStock = (int)row[nameof(Book.InStock)],
+                Price = (decimal)row[nameof(Book.Price)],
+                BorrowPrice = (decimal)row[nameof(Book.Price)] / 10,
+                Cover = row[nameof(Book.Cover)].ToString(),
+                Publisher = row[nameof(Book.Publisher)].ToString(),
+                Ganre = row[nameof(Book.Ganre)].ToString(),
+                Tags = row[nameof(Book.Tags)].ToString()
+            };
+        }
 
         public void AddBook(Book book)
         {

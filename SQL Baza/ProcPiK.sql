@@ -184,6 +184,7 @@ CREATE OR ALTER PROC LoadBooks
 AS
 BEGIN 
 	SELECT * FROM Book
+	WHERE Used = 0
 END
 GO
 
@@ -193,6 +194,72 @@ AS
 BEGIN 
 	SELECT *
 	FROM Book
-	WHERE IDBook = @BookId
+	WHERE IDBook = @BookId AND Used = 0
+END
+GO
+
+CREATE OR ALTER PROC LoadBookUsed
+	@Title NVARCHAR(250)
+AS
+BEGIN 
+	SELECT *
+	FROM Book
+	WHERE Title = @Title AND Used = 1
+END
+GO
+
+CREATE OR ALTER PROC AddBook
+    @Title NVARCHAR(250),
+    @AuthorId INT,
+    @Description NVARCHAR(250),
+    @ISBN NVARCHAR(250),
+    @InStock INT,
+    @Price MONEY,
+    @Publisher NVARCHAR(250),
+    @Genre NVARCHAR(250),
+    @Tags NVARCHAR(250)
+AS
+BEGIN
+	INSERT INTO Book (Title, AuthorID, Description, ISBN, Used, InStock, Price, Publisher, Ganre, Tags)
+	VALUES(@Title, @AuthorId, @Description, @ISBN, 0, @InStock, @Price, @Publisher, @Genre, @Tags)
+	INSERT INTO Book (Title, AuthorID, Description, ISBN, Used, InStock, Price, Publisher, Ganre, Tags)
+	VALUES(@Title, @AuthorId, @Description, @ISBN, 1, @InStock, @Price * 0.8, @Publisher, @Genre, @Tags)
+END
+GO
+
+CREATE OR ALTER PROC UpdateUser
+	@IdBook INT,
+    @Title NVARCHAR(250),
+    @AuthorId INT,
+    @Description NVARCHAR(250),
+    @ISBN NVARCHAR(250),
+    @InStock INT,
+    @Price MONEY,
+    @Publisher NVARCHAR(250),
+    @Genre NVARCHAR(250),
+    @Tags NVARCHAR(250)
+AS
+BEGIN
+	Update Book
+	Set Title = @Title,
+		AuthorID = @AuthorID,
+		Description = @Description,
+		ISBN = @ISBN,
+		InStock = @InStock,
+		Price = @Price,
+		Publisher = @Publisher,
+		Ganre = @Genre,
+		Tags = @Tags
+	WHERE IDBook = @IdBook
+END
+GO
+
+CREATE OR ALTER PROC DeleteBook
+	@IdBook INT
+AS
+BEGIN
+	Update Book
+	Set DeletedAt = GETDATE()
+	WHERE IDBook = @IdBook
 END
 GO
