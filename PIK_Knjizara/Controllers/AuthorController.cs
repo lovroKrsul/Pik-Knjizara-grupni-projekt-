@@ -20,11 +20,7 @@ namespace PIK_Knjizara.Controllers
             return View();
         }
 
-        // GET: Author/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
+      
 
         // GET: Author/Create
         public ActionResult Create()
@@ -103,7 +99,26 @@ namespace PIK_Knjizara.Controllers
                 return View("DeleteAuthor");
             }
         }
+         [HttpGet]
+        public ActionResult AuthorDetails(int id)
+        {
+            IEnumerable<Book> Books = new List<Book>();
+            Books = repo.LoadBooks().Where(Book => Book.AuthorId == id);
+            ViewBag.books = Books;
+            return View("AuthorDetails", model: repo.LoadAuthorByID(id));
+            
+        }
+        
 
+        public ActionResult LoadBooks(int id)
+        {
+            
+            IEnumerable<Book> Books = new List<Book>();
+            Books = repo.LoadBooks().Where(Book => Book.AuthorId == id);
+            return PartialView("_AuthorBooks", model: Books);
+        }
 
     }
+
 }
+

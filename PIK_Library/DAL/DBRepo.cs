@@ -237,14 +237,24 @@ namespace PIK_Library.DAL
             return i;
         }
 
-        public Author LoadAuthor(int id)
+        public Author LoadAuthorByID(int id)
         {
-            return new Author
+            IList<Author> a = new List<Author>();
+            var tblauthor = SqlHelper.ExecuteDataset(CS, "LoadAuthor",
+               new System.Data.SqlClient.SqlParameter("@ID", id)).Tables[0];
+            foreach (DataRow dr in tblauthor.Rows)
             {
-                ID = "1",
-                FirstName = "pero",
-                LastName = "peric"
-            };
+                a.Add(new Author
+                {
+                    ID = dr["IDAuthor"].ToString(),
+                    FirstName = dr[nameof(Author.FirstName)].ToString(),
+                    LastName = dr[nameof(Author.LastName)].ToString(),
+                    Description = dr[nameof(Author.Description)].ToString(),
+                    Biography = dr[nameof(Author.Biography)].ToString(),
+
+                });
+            }
+            return a.FirstOrDefault();
         }
 
         public Author LoadAuthorByName(string name)
@@ -302,7 +312,7 @@ namespace PIK_Library.DAL
                         IdBook = (int)row[nameof(Book.IdBook)],
                         Title = row[nameof(Book.Title)].ToString(),
                         AuthorId = (int)row[nameof(Book.AuthorId)],
-                        Author = LoadAuthor((int)row[nameof(Book.AuthorId)]),
+                        Author = LoadAuthorByID((int)row[nameof(Book.AuthorId)]),
                         Description = row[nameof(Book.Description)].ToString(),
                         ISBN = row[nameof(Book.ISBN)].ToString(),
                         Used = (bool)row[nameof(Book.Used)],
@@ -331,7 +341,7 @@ namespace PIK_Library.DAL
                 IdBook = (int)row[nameof(Book.IdBook)],
                 Title = row[nameof(Book.Title)].ToString(),
                 AuthorId = (int)row[nameof(Book.AuthorId)],
-                Author = LoadAuthor((int)row[nameof(Book.AuthorId)]),
+                Author = LoadAuthorByID((int)row[nameof(Book.AuthorId)]),
                 Description = row[nameof(Book.Description)].ToString(),
                 ISBN = row[nameof(Book.ISBN)].ToString(),
                 Used = (bool)row[nameof(Book.Used)],
@@ -356,7 +366,7 @@ namespace PIK_Library.DAL
                 IdBook = (int)row[nameof(Book.IdBook)],
                 Title = row[nameof(Book.Title)].ToString(),
                 AuthorId = (int)row[nameof(Book.AuthorId)],
-                Author = LoadAuthor((int)row[nameof(Book.AuthorId)]),
+                Author = LoadAuthorByID((int)row[nameof(Book.AuthorId)]),
                 Description = row[nameof(Book.Description)].ToString(),
                 ISBN = row[nameof(Book.ISBN)].ToString(),
                 Used = (bool)row[nameof(Book.Used)],
@@ -414,5 +424,7 @@ namespace PIK_Library.DAL
                 nameof(UpdateBook),
                 book.IdBook);
         }
+
+      
     }
 }

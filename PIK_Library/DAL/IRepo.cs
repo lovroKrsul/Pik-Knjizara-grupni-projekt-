@@ -23,7 +23,7 @@ namespace PIK_Library.Dal
         //---------------------Author-----------------------------------
         int AddAuthor(Author a);
         IList<Author> LoadAuthors();
-        Author LoadAuthor(int id);
+        Author LoadAuthorByID(int id);
         Author LoadAuthorByName(string name);
         int UpdateAuthorByName(Author a);
         int DeleteAuthorByName(string name);

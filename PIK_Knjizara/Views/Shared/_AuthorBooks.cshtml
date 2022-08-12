@@ -1,0 +1,60 @@
+﻿
+
+@model IEnumerable<PIK_Library.Model.Book>
+
+@foreach (var item in Model)
+{
+    <!--TREBA PROMJENIT KAD DODAMO STRANICU KNJIGE DA MATCHA KONTROLER/STRANICU href="//Url.Action("BookDetailsPage", "Book")"" -->
+<div style="background-color:lightgray;padding:20px" class="container">
+    <!-- FOR SOME REASON SLIKA OPET ZOVE AuthorDetails ??? sto ga crasha jel ne dobi ID  -->
+    <table width="100%">
+        <tr>
+            <td style="background-color:whitesmoke;border:1px solid black">
+                @{var x = item.Cover}
+                <img class="image" alt="Picture" src="@x" min-width="100" min-height="100" style="display:inline" />
+            </td>
+            <td>
+                <div style="text-align:justify-all" class="row">
+
+
+
+                    <div class="col-sm" style="text-align:center">
+                        @Html.DisplayNameFor(model => model.Title)
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </div>
+
+
+                    <div style="margin-left:20px;display:inline;text-align:center" class="col-sm">
+                        @Html.DisplayNameFor(model => model.Author.FirstName)
+                        @Html.DisplayFor(modelItem => item.Author.FirstName)
+                        @Html.DisplayFor(modelItem => item.Author.LastName)
+                    </div>
+                    <div style="margin-left: 20px; display: inline; text-align: center" class="col-sm">
+                        @Html.DisplayNameFor(model => model.Used):
+                        @Html.Raw(item.Used ? "Yes" : "No")
+                    </div>
+                    <div style="margin-left: 20px; display: inline; text-align: center" class="col-sm">
+                        @Html.DisplayNameFor(model => model.InStock):
+                        @Html.Raw(item.InStock != 0 ? $"currently {item.InStock} items in stock " : "out of stock")
+                    </div>
+
+                </div>
+                <div style="display: inline; text-align: center">
+                    @Html.DisplayNameFor(model => model.Description):
+                    @Html.DisplayFor(modelItem => item.Description)
+                </div>
+
+
+
+                <div class="btn btn-success float-end" style="background-color:lightgreen;">@item.Price EUR</div>
+            </td>
+        </tr>
+    </table>
+
+
+
+    
+    
+
+</div>
+}

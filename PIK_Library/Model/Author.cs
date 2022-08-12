@@ -9,19 +9,19 @@ namespace PIK_Library.Model
 {
     public class Author
     {
-        [Display(Name = "ID")]
+        [Display(Name = "ID:")]
         [Required]
         public string ID { get; set; }
-        [Display(Name = "Ime")]
+        [Display(Name = "Ime:")]
         [Required(ErrorMessage = "* Ovo je obvezno polje")]
         public string FirstName { get; set; }
-        [Display(Name = "Prezime")]
+        [Display(Name = "Prezime:")]
         [Required(ErrorMessage = "* Ovo je obvezno polje")]
         public string LastName { get; set; }
-        [Display(Name = "Biografija")]
+        [Display(Name = "Biografija:")]
         [Required(ErrorMessage = "* Ovo je obvezno polje")]
         public string Biography { get; set; }
-        [Display(Name = "Opis")]
+        [Display(Name = "Opis:")]
         [Required(ErrorMessage = "* Ovo je obvezno polje")]
         public string Description { get; set; }
       
