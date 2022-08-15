@@ -414,5 +414,12 @@ namespace PIK_Library.DAL
                 nameof(UpdateBook),
                 book.IdBook);
         }
+
+        //-------------------------------------------------------------------------------- Book --------------------------------------------------------------------------------
+
+        public void DeleteWorker(User user)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

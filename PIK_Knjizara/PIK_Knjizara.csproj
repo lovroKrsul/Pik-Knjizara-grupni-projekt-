@@ -145,10 +145,12 @@
     <Compile Include="Models\Validation\BoolRequired.cs" />
     <Compile Include="Models\ForgotPasswordModel.cs" />
     <Compile Include="Models\ViewModels\AddBookVM.cs" />
+    <Compile Include="Models\ViewModels\AddWorkerModel.cs" />
     <Compile Include="Models\ViewModels\BookVM.cs" />
     <Compile Include="Models\ViewModels\PasswordResetVM.cs" />
     <Compile Include="Models\ViewModels\RegisterViewModel.cs" />
     <Compile Include="Models\ViewModels\UpdateUserModel.cs" />
+    <Compile Include="Models\ViewModels\UpdateWorkerModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -263,7 +265,7 @@
     <Content Include="Views\Error\Error.cshtml" />
     <Content Include="Views\Error\PageNotFound.cshtml" />
     <Content Include="Views\Home\LogIn.cshtml" />
-    <Content Include="Views\Home\Registration.cshtml" />
+    <Content Include="Views\User\Registration.cshtml" />
     <Content Include="Views\User\ForgotPassword.cshtml" />
     <Content Include="Views\User\UpdateUser.cshtml" />
     <Content Include="Views\User\ConfirmPasswordReset.cshtml" />
@@ -279,10 +281,11 @@
     <Content Include="Views\Author\AuthorDetails.cshtml" />
     <Content Include="Views\Shared\_AuthorBooks.cshtml" />
     <Content Include="Views\WorkerDashboard\Index.cshtml" />
+    <Content Include="Views\Worker\UpdateWorker.cshtml" />
+    <Content Include="Views\Worker\AddWorker.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Worker\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.min.css.map" />

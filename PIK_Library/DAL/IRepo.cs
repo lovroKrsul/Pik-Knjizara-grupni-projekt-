@@ -36,5 +36,8 @@ namespace PIK_Library.Dal
         void AddBook(Book book);
         void UpdateBook(Book book);
         void DeleteBook(Book book);
+
+        //---------------------Book------------------------------------
+        void DeleteWorker(User user);
     }
 }

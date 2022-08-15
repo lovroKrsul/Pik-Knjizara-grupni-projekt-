@@ -104,6 +104,38 @@ namespace PIK_Knjizara.Controllers
             return View();
         }
 
+        public ActionResult Registration()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Registration(RegisterViewModel user)
+        {
+            if (ModelState.IsValid)
+            {
+                IRepo repo = (System.Web.HttpContext.Current.Application["database"] as IRepo);
+                _allUsers = repo.LoadUsers();
+                if (_allUsers.FirstOrDefault(u => u.Email == user.Email) == null)
+                {
+                    user.Email = user.E_mail;
+                    user.FirstName = user.FName;
+                    user.LastName = user.LName;
+                    user.Password = user.Pass;
+                    user.Pass = null;
+                    user.PersonCode = "K" + DateTime.Now.ToString();
+                    user.Password = Cryptography.HashPassword(user.Password);
+                    repo.AddUser(user);
+                    Session["user"] = user;
+
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+
+            return Registration();
+        }
+
         public ActionResult Delete(int id)
         {
             IRepo repo = (System.Web.HttpContext.Current.Application["database"] as IRepo);
