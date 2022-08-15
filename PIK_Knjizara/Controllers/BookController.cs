@@ -28,5 +28,15 @@ namespace PIK_Knjizara.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public ActionResult AddBook(AddBookVM book)//, HttpPostedFileBase image)
+        {
+            if (ModelState.IsValid)//&& image != null && image.ContentLength > 0)
+            {
+
+            }
+            return View();
+        }
     }
 }

@@ -9,16 +9,17 @@ namespace PIK_Knjizara.Models.ViewModels
 {
     public class AddBookVM : Book
     {
-        [Required]
-        public string Title { get; set; }
-        [Required]
-        public int AuthorId { get; set; }
-        public Author Author { get; set; }
-        [Required]
-        public string ISBN { get; set; }
-        [Required]
-        public decimal Price { get; set; }
-        [Required]
-        public string Cover { get; set; }
+        //[Required]
+        [Display(Name = "Title")]
+        public string Titl { get; set; }
+        //[Required]
+        public int Author_Id { get; set; }
+        public Author Authors { get; set; }
+        //[Required]
+        [Display(Name = "ISBN")]
+        public string isbn { get; set; }
+        //[Required]
+        [Display(Name = "Price")]
+        public decimal Pric { get; set; }
     }
 }
