@@ -28,6 +28,12 @@
                     <li class="nav-link">
                         @Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })
                     </li>
+                    @if (Session["user"] == null)
+                    {
+                        <li class="nav-link">
+                            @Html.ActionLink("Dashboard", "Index", "WorkerDashboard", null, new { @class = "nav-link" })
+                        </li>
+                    }
                     <li class="nav-link">
                         @Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link" })
                     </li>

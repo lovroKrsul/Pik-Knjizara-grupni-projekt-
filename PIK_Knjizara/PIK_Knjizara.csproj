@@ -137,6 +137,8 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\WorkerController.cs" />
+    <Compile Include="Controllers\WorkerDashboardController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -276,9 +278,11 @@
     <Content Include="Views\Book\AddBook.cshtml" />
     <Content Include="Views\Author\AuthorDetails.cshtml" />
     <Content Include="Views\Shared\_AuthorBooks.cshtml" />
+    <Content Include="Views\WorkerDashboard\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Worker\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.min.css.map" />

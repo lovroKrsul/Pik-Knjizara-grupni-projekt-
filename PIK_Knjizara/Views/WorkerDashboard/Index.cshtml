@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div>
+    <div>
+        @Html.ActionLink("Add worker", "AddWorker", "Worker", null, new { @class = "btn btn-outline-dark" })
+    </div>
+    <div>
+        @Html.ActionLink("Add book", "AddBook", "Book", null, new { @class = "btn btn-outline-dark" })
+    </div>
+    <div>
+        @Html.ActionLink("Add author", "AddAuthor", "Author", null, new { @class = "btn btn-outline-dark" })
+    </div>
+    <div>
+        @Html.ActionLink("Return book", "ReturnBook", "Book", null, new { @class = "btn btn-outline-dark" })
+    </div>
+    <div>
+        @Html.ActionLink("Bookstore data", "Data", "Bookstore", null, new { @class = "btn btn-outline-dark" })
+    </div>
+</div>
