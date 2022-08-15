@@ -12,6 +12,7 @@ namespace PIK_Knjizara.Controllers
     public class WorkerController : Controller
     {
         private IList<User> _allUsers;
+        private IRepo repo = (System.Web.HttpContext.Current.Application["database"] as IRepo);
 
         // GET: Worker
         public ActionResult Index()
@@ -49,16 +50,25 @@ namespace PIK_Knjizara.Controllers
 
             return AddWorker();
         }
-        public ActionResult UpdateWorker()
+        public ActionResult UpdateWorker(int id)
         {
-            if (Session["worker"] == null)
+            /*if (Session["worker"] == null)
             {
                 return RedirectToAction("Index", "Home");
+            }*/
+            User user;
+            if (id != null)
+            {
+                user = repo.LoadUserId(id);
             }
-            User user = (User)Session["worker"];
-            UpdateWorkerModel userid = new UpdateWorkerModel((System.Web.HttpContext.Current.Application["database"] as IRepo).LoadUser(user.Email));
+            else
+            {
+                User userE = (User)Session["worker"];
+                user = repo.LoadUser(userE.Email);
+            }
+            UpdateWorkerModel worker = new UpdateWorkerModel(user);
 
-            return View(userid);
+            return View(worker);
         }
 
         [HttpPost]
@@ -66,7 +76,7 @@ namespace PIK_Knjizara.Controllers
         {
             if (ModelState.IsValid)
             {
-                
+
                 if (user.OldPassword != null && user.NewPassword != null)
                 {
                     user.OldPassword = Cryptography.HashPassword(user.OldPassword);

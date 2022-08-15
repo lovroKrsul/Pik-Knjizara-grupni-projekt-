@@ -1,0 +1,68 @@
+﻿@model IEnumerable<PIK_Library.Model.Book>
+
+@{
+    ViewBag.Title = "ManageBooks";
+}
+
+<h2>ManageBooks</h2>
+
+<p>
+    @Html.ActionLink("Create New", "AddBook", "Book", null, new { @class = "btn btn-outline-dark" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdBook)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Author)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ISBN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Used)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InStock)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdBook)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Author)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ISBN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Used)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InStock)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", "Book", new { Id = item.IdBook }, new { @class = "btn btn-outline-dark" }) |
+            @Html.ActionLink("Buy", "Index", "Book", new { Id = item.IdBook }, new { @class = "btn btn-outline-dark" })
+        </td>
+    </tr>
+}
+
+</table>

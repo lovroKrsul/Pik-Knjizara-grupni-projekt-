@@ -283,6 +283,8 @@
     <Content Include="Views\WorkerDashboard\Index.cshtml" />
     <Content Include="Views\Worker\UpdateWorker.cshtml" />
     <Content Include="Views\Worker\AddWorker.cshtml" />
+    <Content Include="Views\WorkerDashboard\ManageBooks.cshtml" />
+    <Content Include="Views\WorkerDashboard\ManageWorkers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
