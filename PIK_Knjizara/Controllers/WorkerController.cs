@@ -52,10 +52,10 @@ namespace PIK_Knjizara.Controllers
         }
         public ActionResult UpdateWorker(int id)
         {
-            /*if (Session["worker"] == null)
+            if (Session["worker"] == null)
             {
                 return RedirectToAction("Index", "Home");
-            }*/
+            }
             User user;
             if (id != null)
             {
