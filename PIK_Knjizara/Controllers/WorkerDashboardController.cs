@@ -20,12 +20,18 @@ namespace PIK_Knjizara.Controllers
         public ActionResult ManageWorkers()
         {
             IList<User> users = repo.LoadUsers();
-            return View(users.Where(u => u.Workplace != null));
+            return View(users.Where(u => u.Workplace != null && u.Workplace != "").ToList());
         }
 
         public ActionResult ManageBooks()
         {
             return View(repo.LoadBooks());
+        }
+
+        public ActionResult Users()
+        {
+            IList<User> persons = repo.LoadUsers();
+            return View(persons.Where(u => u.PersonCode != null && u.PersonCode != "").ToList());
         }
     }
 }
