@@ -27,11 +27,6 @@ namespace PIK_Knjizara.Controllers
             return View();
         }
 
-        public ActionResult Contact()
-        {
-            return View();
-        }
-
         [HttpGet]
         public ActionResult LogIn()
         {
@@ -74,6 +69,22 @@ namespace PIK_Knjizara.Controllers
             Session.RemoveAll();
             Session.Abandon();
             return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult Contact()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Contact(ContactUsVM contact)
+        {
+            if (ModelState.IsValid)
+            {
+                throw new NotImplementedException();
+            }
+
+            return View();
         }
     }
 }
