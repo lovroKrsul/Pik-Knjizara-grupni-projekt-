@@ -176,6 +176,35 @@ namespace PIK_Library.DAL
                 user.StreetName,
                 user.StreetNumber);
         }
+        
+        public string GetPersonNumber()
+        {
+            var tblNumber = SqlHelper.ExecuteDataset(CS, nameof(GetPersonNumber)).Tables[0];
+
+            if (tblNumber.Rows.Count == 0) return "0001";
+
+            DataRow row = tblNumber.Rows[0];
+
+            string lastcode = row[nameof(User.PersonCode)].ToString();
+
+            int number = int.Parse(lastcode.Substring(lastcode.Length - 4));
+            number ++;
+
+            string returnNum = number.ToString();
+            while (returnNum.Length != 4)
+            {
+                returnNum = "0" + returnNum;
+            }
+
+            return returnNum;
+        }
+
+        //-------------------------------------------------------------------------------- Worker --------------------------------------------------------------------------------
+
+        public void DeleteWorker(User user)
+        {
+            throw new NotImplementedException();
+        }
 
         //-------------------------------------------------------------------------------- Author --------------------------------------------------------------------------------
         public int AddAuthor(Author a)
@@ -415,11 +444,5 @@ namespace PIK_Library.DAL
                 book.IdBook);
         }
 
-        //-------------------------------------------------------------------------------- Book --------------------------------------------------------------------------------
-
-        public void DeleteWorker(User user)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

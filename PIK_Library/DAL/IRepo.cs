@@ -19,6 +19,7 @@ namespace PIK_Library.Dal
         void UpdateUser(User user);
         void ResetPassword(User user);
         void DeleteUser(User user);
+        string GetPersonNumber();
 
         //---------------------Author-----------------------------------
         int AddAuthor(Author a);

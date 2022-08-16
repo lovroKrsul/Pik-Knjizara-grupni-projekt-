@@ -45,8 +45,8 @@ CREATE OR ALTER PROC AddUser
     @Workplace NVARCHAR(250)
 AS
 BEGIN
-	INSERT INTO Person(PersonCode, FirstName, LastName, Email, Password, City, ZipCode, StreetName, StreetNumber, OIB, Workplace)
-	VALUES (@PersonCode, @FirstName, @LastName, @Email, @Password, @City, @ZipCode, @StreetName, @StreetNumber, @OIB, @Workplace)
+	INSERT INTO Person(PersonCode, FirstName, LastName, Email, Password, City, ZipCode, StreetName, StreetNumber, OIB, Workplace, CreatedAt)
+	VALUES (@PersonCode, @FirstName, @LastName, @Email, @Password, @City, @ZipCode, @StreetName, @StreetNumber, @OIB, @Workplace, CONVERT(DATE, GETDATE()))
 END
 GO
 
@@ -126,6 +126,20 @@ BEGIN
 	WHERE Email = @email AND Password = @password 
 END
 GO
+
+CREATE OR ALTER PROC GetPersonNumber
+AS
+BEGIN
+	SELECT TOP 1 PersonCode
+	FROM Person
+	WHERE CreatedAt = CONVERT(DATE, GETDATE()) AND PersonCode IS NOT NULL
+	ORDER BY IDUser DESC
+END
+GO
+
+select * from Person as p
+ORDER BY P.IDUser DESC
+SELECT CONVERT(DATE, GETDATE())
 ---------------------------------------------------------Autor----------------------------------------------
 
 CREATE OR ALTER PROC [dbo].[DeleteAuthor]
@@ -220,10 +234,10 @@ CREATE OR ALTER PROC AddBook
     @Tags NVARCHAR(250)
 AS
 BEGIN
-	INSERT INTO Book (Title, AuthorID, Description, ISBN, Used, InStock, Price, Publisher, Ganre, Tags)
-	VALUES(@Title, @AuthorId, @Description, @ISBN, 0, @InStock, @Price, @Publisher, @Genre, @Tags)
-	INSERT INTO Book (Title, AuthorID, Description, ISBN, Used, InStock, Price, Publisher, Ganre, Tags)
-	VALUES(@Title, @AuthorId, @Description, @ISBN, 1, @InStock, @Price * 0.8, @Publisher, @Genre, @Tags)
+	INSERT INTO Book (Title, AuthorID, Description, ISBN, Used, InStock, Price, Publisher, Ganre, Tags, CreatedAt)
+	VALUES(@Title, @AuthorId, @Description, @ISBN, 0, @InStock, @Price, @Publisher, @Genre, @Tags, GETDATE())
+	INSERT INTO Book (Title, AuthorID, Description, ISBN, Used, InStock, Price, Publisher, Ganre, Tags, CreatedAt)
+	VALUES(@Title, @AuthorId, @Description, @ISBN, 1, @InStock, @Price * 0.8, @Publisher, @Genre, @Tags, GETDATE())
 END
 GO
 

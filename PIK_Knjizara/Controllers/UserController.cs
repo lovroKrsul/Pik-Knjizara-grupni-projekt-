@@ -119,12 +119,13 @@ namespace PIK_Knjizara.Controllers
                 _allUsers = repo.LoadUsers();
                 if (_allUsers.FirstOrDefault(u => u.Email == user.Email) == null)
                 {
+                    string num = repo.GetPersonNumber();
                     user.Email = user.E_mail;
                     user.FirstName = user.FName;
                     user.LastName = user.LName;
                     user.Password = user.Pass;
                     user.Pass = null;
-                    user.PersonCode = "K" + DateTime.Now.ToString();
+                    user.PersonCode = "K" + DateTime.Now.Year + DateTime.Now.ToString("MM") + DateTime.Now.ToString("dd") + num;
                     user.Password = Cryptography.HashPassword(user.Password);
                     repo.AddUser(user);
                     Session["user"] = user;
