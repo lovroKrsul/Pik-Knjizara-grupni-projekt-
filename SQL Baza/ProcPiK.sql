@@ -8,6 +8,7 @@ CREATE OR ALTER PROC LoadUsers
 AS
 BEGIN 
 	SELECT * FROM Person
+	WHERE DeletedAt IS NULL
 END
 GO
 
@@ -17,7 +18,7 @@ AS
 BEGIN 
 	SELECT *
 	FROM Person
-	WHERE IDUser = @PersonId
+	WHERE IDUser = @PersonId AND DeletedAt IS NULL
 END
 GO
 
@@ -27,7 +28,7 @@ AS
 BEGIN 
 	SELECT *
 	FROM Person
-	WHERE Email = @Email
+	WHERE Email = @Email AND DeletedAt IS NULL
 END
 GO
 
@@ -137,9 +138,30 @@ BEGIN
 END
 GO
 
-select * from Person as p
-ORDER BY P.IDUser DESC
-SELECT CONVERT(DATE, GETDATE())
+---------------------------------------------------------Autor----------------------------------------------
+
+CREATE OR ALTER PROC DeleteWorker
+	@IdUser INT,
+    @FirstName NVARCHAR(250),
+    @LastName NVARCHAR(250),
+    @Email NVARCHAR(250),
+    @Password NVARCHAR(250),
+	@OIB NVARCHAR(250),
+	@Workplace NVARCHAR(250)
+AS
+BEGIN
+	Update Person
+	Set FirstName = @FirstName,
+		LastName = @LastName,
+		Email = @Email,
+		Password = @Password,
+		OIB = @OIB,
+		Workplace = @Workplace,
+		DeletedAt = GETDATE()
+	WHERE IDUser = @IdUser
+END
+GO
+
 ---------------------------------------------------------Autor----------------------------------------------
 
 CREATE OR ALTER PROC [dbo].[DeleteAuthor]
@@ -198,7 +220,7 @@ CREATE OR ALTER PROC LoadBooks
 AS
 BEGIN 
 	SELECT * FROM Book
-	WHERE Used = 0
+	WHERE Used = 0 AND DeletedAt IS NULL
 END
 GO
 
@@ -208,7 +230,7 @@ AS
 BEGIN 
 	SELECT *
 	FROM Book
-	WHERE IDBook = @BookId AND Used = 0
+	WHERE IDBook = @BookId AND Used = 0 AND DeletedAt IS NULL
 END
 GO
 
@@ -218,7 +240,7 @@ AS
 BEGIN 
 	SELECT *
 	FROM Book
-	WHERE Title = @Title AND Used = 1
+	WHERE Title = @Title AND Used = 1 AND DeletedAt IS NULL
 END
 GO
 

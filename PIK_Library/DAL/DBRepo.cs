@@ -203,7 +203,15 @@ namespace PIK_Library.DAL
 
         public void DeleteWorker(User user)
         {
-            throw new NotImplementedException();
+            SqlHelper.ExecuteNonQuery(
+                CS,
+                nameof(DeleteWorker),
+                user.FirstName,
+                user.LastName,
+                user.Email,
+                user.Password,
+                user.OIB,
+                user.Workplace);
         }
 
         //-------------------------------------------------------------------------------- Author --------------------------------------------------------------------------------
