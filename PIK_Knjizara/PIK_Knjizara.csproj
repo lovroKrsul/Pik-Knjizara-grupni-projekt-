@@ -286,6 +286,7 @@
     <Content Include="Views\WorkerDashboard\ManageWorkers.cshtml" />
     <Content Include="Views\WorkerDashboard\Users.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\WorkerDashboard\Contacts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -42,6 +42,8 @@ namespace PIK_Library.Dal
         void DeleteWorker(User user);
 
         //---------------------Contact------------------------------------
+        IList<ContactUs> LoadContacts();
         void AddContact(ContactUs contact);
+        void ContactViewed(int id);
     }
 }

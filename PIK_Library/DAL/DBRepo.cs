@@ -454,6 +454,29 @@ namespace PIK_Library.DAL
 
         //-------------------------------------------------------------------------------- Book --------------------------------------------------------------------------------
 
+        public IList<ContactUs> LoadContacts()
+        {
+
+            IList<ContactUs> contacts = new List<ContactUs>();
+
+            var tblContacts = SqlHelper.ExecuteDataset(CS, nameof(LoadContacts)).Tables[0];
+
+            foreach (DataRow row in tblContacts.Rows)
+            {
+                contacts.Add(
+                    new ContactUs
+                    {
+                        IdContact = (int)row[nameof(ContactUs.IdContact)],
+                        Name = row[nameof(ContactUs.Name)].ToString(),
+                        Email = row[nameof(ContactUs.Email)].ToString(),
+                        Message = row[nameof(ContactUs.Message)].ToString(),
+                        Viewed = (bool)row[nameof(ContactUs.Viewed)]
+                    });
+            }
+
+            return contacts;
+        }
+
         public void AddContact(ContactUs contact)
         {
             SqlHelper.ExecuteNonQuery(
@@ -462,6 +485,14 @@ namespace PIK_Library.DAL
                 contact.Name,
                 contact.Email,
                 contact.Message);
+        }
+
+        public void ContactViewed(int id)
+        {
+            SqlHelper.ExecuteDataset(
+                CS,
+                nameof(ContactViewed),
+                id);
         }
     }
 }

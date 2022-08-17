@@ -33,5 +33,16 @@ namespace PIK_Knjizara.Controllers
             IList<User> persons = repo.LoadUsers();
             return View(persons.Where(u => u.PersonCode != null && u.PersonCode != "").ToList());
         }
+
+        public ActionResult Contacts()
+        {
+            return View(repo.LoadContacts());
+        }
+
+        public ActionResult ContactViewed(int id)
+        {
+            repo.ContactViewed(id);
+            return RedirectToAction("Contacts");
+        }
     }
 }

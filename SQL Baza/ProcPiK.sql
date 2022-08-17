@@ -308,15 +308,25 @@ CREATE OR ALTER PROC AddContact
 	@Message NVARCHAR(250)
 AS
 BEGIN
-	INSERT INTO Contact(Name, Email, Message, CreatedAt)
-	VALUES (@Name, @Email, @Message, GETDATE())
+	INSERT INTO Contact(Name, Email, Message, Viewed, CreatedAt)
+	VALUES (@Name, @Email, @Message, 0, GETDATE())
 END
 GO
 
-CREATE OR ALTER PROC LoadMessages
+CREATE OR ALTER PROC LoadContacts
 AS
 BEGIN
 	SELECT * 
 	FROM Contact
+END
+GO
+
+CREATE OR ALTER PROC ContactViewed
+	@IdContact INT
+AS
+BEGIN
+	UPDATE Contact
+	SET Viewed = 1
+	WHERE IdContact = @IdContact
 END
 GO
