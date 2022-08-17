@@ -120,19 +120,21 @@ namespace PIK_Library.DAL
             IList<Author> authors = new List<Author>();
             var tblAuthors = SqlHelper.ExecuteDataset(CS, nameof(LoadAuthors)).Tables[0];
             if (tblAuthors.Rows.Count == 0) return null;
+            foreach (DataRow row in tblAuthors.Rows)
+            {
+               
+                authors.Add(
+                    new Author
+                    {
+                        ID = row["IDAuthor"].ToString(),
+                        FirstName = row.IsNull("FirstName") ? string.Empty : row[nameof(Author.FirstName)].ToString(),
+                        LastName = row.IsNull("LastName") ? string.Empty : row[nameof(Author.LastName)].ToString(),
+                        Biography = row.IsNull("Biography") ? string.Empty : row[nameof(Author.Biography)].ToString(),
+                        Description = row.IsNull("Description") ? string.Empty : row[nameof(Author.Description)].ToString(),
 
-            DataRow row = tblAuthors.Rows[0];
-            authors.Add(
-                new Author
-                {
-                    ID = row["IDAuthor"].ToString(),
-                    FirstName = row.IsNull("FirstName") ? string.Empty : row[nameof(Author.FirstName)].ToString(),
-                    LastName = row.IsNull("LastName") ? string.Empty : row[nameof(Author.LastName)].ToString(),
-                    Biography = row.IsNull("Biography") ? string.Empty : row[nameof(Author.Biography)].ToString(),
-                    Description = row.IsNull("Description") ? string.Empty : row[nameof(Author.Description)].ToString(),
 
-
-                });
+                    });
+            }
             return authors;
         }
         //-------------------------------------------------------------------------------- Update Author By Name --------------------------------------------------------------------------------
