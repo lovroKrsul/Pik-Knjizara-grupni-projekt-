@@ -45,5 +45,9 @@ namespace PIK_Library.Dal
         IList<ContactUs> LoadContacts();
         void AddContact(ContactUs contact);
         void ContactViewed(int id);
+
+        //---------------------Contact------------------------------------
+        Bookstore LoadBookstore();
+        void UpdateBookstore(Bookstore bookstore);
     }
 }

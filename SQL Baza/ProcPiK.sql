@@ -330,3 +330,30 @@ BEGIN
 	WHERE IdContact = @IdContact
 END
 GO
+
+---------------------------------------------------------Contact----------------------------------------------
+
+CREATE OR ALTER PROC LoadBookstore
+AS
+BEGIN
+	SELECT *
+	FROM Bookstore
+END
+GO
+
+CREATE OR ALTER PROC UpdateBookstore
+	@IdBookstore INT,
+	@Name NVARCHAR(250),
+	@Address NVARCHAR(250),
+	@IBAN NVARCHAR(250)
+AS
+BEGIN
+	UPDATE Bookstore
+	SET Name = @Name,
+		Address = @Address,
+		IBAN = @IBAN
+	WHERE IDBookstore = @IdBookstore
+END
+GO
+
+exec UpdateBookstore 1, 'PiK KNJIZARA', 'ILICA 24', 'HR12500010170648489890'

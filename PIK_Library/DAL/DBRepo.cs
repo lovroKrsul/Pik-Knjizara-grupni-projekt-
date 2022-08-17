@@ -456,7 +456,6 @@ namespace PIK_Library.DAL
 
         public IList<ContactUs> LoadContacts()
         {
-
             IList<ContactUs> contacts = new List<ContactUs>();
 
             var tblContacts = SqlHelper.ExecuteDataset(CS, nameof(LoadContacts)).Tables[0];
@@ -493,6 +492,36 @@ namespace PIK_Library.DAL
                 CS,
                 nameof(ContactViewed),
                 id);
+        }
+
+        //-------------------------------------------------------------------------------- Bookstore --------------------------------------------------------------------------------
+
+        public Bookstore LoadBookstore()
+        {
+            var tblBookstore = SqlHelper.ExecuteDataset(CS, nameof(LoadBookstore)).Tables[0];
+
+            if (tblBookstore.Rows.Count == 0) return null;
+
+            DataRow row = tblBookstore.Rows[0];
+
+            return new Bookstore
+            {
+                IdBookstore = (int)row[nameof(Bookstore.IdBookstore)],
+                Name = row[nameof(Bookstore.Name)].ToString(),
+                Address = row[nameof(Bookstore.Address)].ToString(),
+                IBAN = row[nameof(Bookstore.IBAN)].ToString()
+            };
+        }
+
+        public void UpdateBookstore(Bookstore bookstore)
+        {
+            SqlHelper.ExecuteNonQuery(
+                CS,
+                nameof(UpdateBookstore),
+                bookstore.IdBookstore,
+                bookstore.Name,
+                bookstore.Address,
+                bookstore.IBAN);
         }
     }
 }

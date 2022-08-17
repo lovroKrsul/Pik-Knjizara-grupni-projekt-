@@ -44,5 +44,22 @@ namespace PIK_Knjizara.Controllers
             repo.ContactViewed(id);
             return RedirectToAction("Contacts");
         }
+
+        public ActionResult BookstoreData()
+        {
+            return View(repo.LoadBookstore());
+        }
+
+        [HttpPost]
+        public ActionResult BookstoreData(Bookstore bookstore)
+        {
+            if (ModelState.IsValid)
+            {
+                repo.UpdateBookstore(bookstore);
+                return RedirectToAction("Index");
+            }
+
+            return View();
+        }
     }
 }
