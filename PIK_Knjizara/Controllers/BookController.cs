@@ -11,6 +11,8 @@ namespace PIK_Knjizara.Controllers
 {
     public class BookController : Controller
     {
+        IRepo repo = (System.Web.HttpContext.Current.Application["database"] as IRepo);
+
         // GET: Book
         public ActionResult Index(int id)
         {
@@ -22,6 +24,19 @@ namespace PIK_Knjizara.Controllers
             book.Cover = "data:image/jpeg;base64," + book.Cover;
             books.OldBook = book;
             return View(books);
+        }
+
+        public ActionResult GetAutocompleteBooks(string term)
+        {
+            IList<Book> books = repo.LoadBooks();
+
+            var find = books.Where(a => a.Title.ToLower().Contains(term.ToLower())).Select(a => new
+            {
+                label = a.Title,
+                value = a.IdBook
+            });
+
+            return Json(find, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult AddBook()
