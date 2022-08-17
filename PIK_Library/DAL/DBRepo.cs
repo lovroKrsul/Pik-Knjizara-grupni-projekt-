@@ -452,5 +452,16 @@ namespace PIK_Library.DAL
                 book.IdBook);
         }
 
+        //-------------------------------------------------------------------------------- Book --------------------------------------------------------------------------------
+
+        public void AddContact(ContactUs contact)
+        {
+            SqlHelper.ExecuteNonQuery(
+                CS,
+                nameof(AddContact),
+                contact.Name,
+                contact.Email,
+                contact.Message);
+        }
     }
 }

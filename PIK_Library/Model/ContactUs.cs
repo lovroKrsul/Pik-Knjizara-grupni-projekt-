@@ -4,11 +4,10 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace PIK_Knjizara.Models.ViewModels
+namespace PIK_Library.Model
 {
-    public class ContactUsVM
+    public class ContactUs
     {
-        [Required]
         public string Name { get; set; }
         [Required]
         [EmailAddress]

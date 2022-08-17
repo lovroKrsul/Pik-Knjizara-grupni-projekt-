@@ -299,3 +299,24 @@ BEGIN
 	WHERE IDBook = @IdBook
 END
 GO
+
+---------------------------------------------------------Contact----------------------------------------------
+
+CREATE OR ALTER PROC AddContact
+	@Name NVARCHAR(250),
+	@Email NVARCHAR(250),
+	@Message NVARCHAR(250)
+AS
+BEGIN
+	INSERT INTO Contact(Name, Email, Message, CreatedAt)
+	VALUES (@Name, @Email, @Message, GETDATE())
+END
+GO
+
+CREATE OR ALTER PROC LoadMessages
+AS
+BEGIN
+	SELECT * 
+	FROM Contact
+END
+GO

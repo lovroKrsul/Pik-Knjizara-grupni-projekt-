@@ -11,9 +11,10 @@ namespace PIK_Knjizara.Controllers
 {
     public class HomeController : Controller
     {
+        IRepo repo = (System.Web.HttpContext.Current.Application["database"] as IRepo);
         public ActionResult Index()
         {
-            IList<Book> books = (System.Web.HttpContext.Current.Application["database"] as IRepo).LoadBooks();
+            IList<Book> books = repo.LoadBooks();
             foreach (Book book in books)
             {
                 book.Cover = "data:image/jpeg;base64," + book.Cover;
@@ -77,11 +78,12 @@ namespace PIK_Knjizara.Controllers
         }
 
         [HttpPost]
-        public ActionResult Contact(ContactUsVM contact)
+        public ActionResult Contact(ContactUs contact)
         {
             if (ModelState.IsValid)
             {
-                throw new NotImplementedException();
+                repo.AddContact(contact);
+                return RedirectToAction("Index", "Home");
             }
 
             return View();
