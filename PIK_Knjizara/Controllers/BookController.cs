@@ -39,6 +39,15 @@ namespace PIK_Knjizara.Controllers
             return Json(find, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult GetBook(int id)
+        {
+            GetBookVM getBookVM = new GetBookVM();
+            Book book = repo.LoadBook(id);
+            book.Cover = "data:image/jpeg;base64," + book.Cover;
+            getBookVM.Book = book;
+            return View(getBookVM);
+        }
+
         public ActionResult AddBook()
         {
             return View();
