@@ -290,6 +290,8 @@
     <Content Include="Views\WorkerDashboard\Contacts.cshtml" />
     <Content Include="Views\WorkerDashboard\BookstoreData.cshtml" />
     <Content Include="Views\Search\BookSearch.cshtml" />
+    <Content Include="Views\Search\AuthorSearch.cshtml" />
+    <Content Include="Views\Shared\_GetAuthors.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

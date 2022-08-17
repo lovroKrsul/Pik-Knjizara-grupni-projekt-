@@ -22,5 +22,11 @@ namespace PIK_Knjizara.Controllers
             }
             return View(books);
         }
+
+        public ActionResult AuthorSearch()
+        {
+            IList<Author> authors = repo.LoadAuthors();
+            return View(authors);
+        }
     }
 }
