@@ -6,7 +6,7 @@
             @Html.DisplayFor(model => model.Title)
         </h1>
         <h3>
-            @Html.DisplayFor(model => model.Author)
+            @Model.Author.ToString()
         </h3>
         <img class="image" src="@Model.Cover" alt="Picture" />
     </div>
@@ -44,7 +44,7 @@
             </div>
             <div>
                 <div class="m-3">
-                    @Html.ActionLink("Buy", "Index", "Buy", new { Id = Model.IdBook }, new { @class = "btn btn-outline-dark" })
+                    @Html.ActionLink("Buy", "GetBook", "Book", new { Id = Model.IdBook }, new { @class = "btn btn-outline-dark" })
                 </div>
             </div>
         </div>

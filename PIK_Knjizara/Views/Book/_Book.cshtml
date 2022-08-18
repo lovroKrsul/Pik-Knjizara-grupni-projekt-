@@ -1,7 +1,7 @@
 ﻿@model PIK_Library.Model.Book
 
-<div class="card m-3" style="width: 15rem;">
-    <img class="image" src="@Model.Cover" alt="Picture" />
+<div class="card">
+    <img class="image m-2" src="@Model.Cover" alt="Picture" />
 
     <div class="card-body">
 
@@ -21,10 +21,6 @@
                 <h5>
                     @Html.DisplayFor(model => model.Price) EUR
                 </h5>
-
-                <div class="d-flex flex-column-reverse">
-                    @Html.ActionLink("Buy", "Index", "Book", new { Id = Model.IdBook }, new { @class = "btn btn-outline-dark" })
-                </div>
             </div>
         </div>
     </div>
