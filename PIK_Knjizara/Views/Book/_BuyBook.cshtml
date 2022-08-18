@@ -16,6 +16,10 @@
             @Html.LabelFor(model => model.PaymentMethod, htmlAttributes: new { @class = "control-label col-md-2 w-100" })
             <div class="col-md-10">
                 <div class="checkbox">
+                    <label class="switch">
+                        <input type="checkbox"/>
+                        <span class="slider"></span>
+                    </label>
                     <span id="paymentMethod">Paypal payment</span>
                     @Html.CheckBoxFor(model => model.PaymentMethod, htmlAttributes: new { @class = "form-check-input form-switch" })
                     @Html.ValidationMessageFor(model => model.PaymentMethod, "", new { @class = "text-danger" })

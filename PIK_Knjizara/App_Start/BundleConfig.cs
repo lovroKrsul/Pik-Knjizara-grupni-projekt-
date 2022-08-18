@@ -13,7 +13,8 @@ namespace PIK_Knjizara
                 "~/Content/jquery-ui.css",
                 "~/Content/jquery-ui.theme.css",
                 "~/Content/font-awsome.css",
-                "~/Content/Site.css"
+                "~/Content/Site.css",
+                "~/Content/Slider.css"
             ));
 
             bundles.Add(new Bundle("~/Scripts").Include(
