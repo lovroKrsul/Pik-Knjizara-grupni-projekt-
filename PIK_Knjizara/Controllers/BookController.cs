@@ -51,7 +51,7 @@ namespace PIK_Knjizara.Controllers
         {
             if (ModelState.IsValid && file != null && file.ContentLength > 0)
             {
-                SavePicture(book, file);
+                book.Cover = SavePicture(file);
                 book.Title = book.Titl;
                 book.ISBN = book.ibsn;
                 book.Price = book.Pric;
@@ -66,12 +66,42 @@ namespace PIK_Knjizara.Controllers
             return View();
         }
 
-        private void SavePicture(AddBookVM book, HttpPostedFileBase file)
+        public ActionResult UpdateBook(int id)
+        {
+            UpdateBookVM book = new UpdateBookVM(repo.LoadBook(id));
+            book.Authors = repo.LoadAuthors();
+            return View(book);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateBook(UpdateBookVM book, HttpPostedFileBase file)
+        {
+            if (ModelState.IsValid)
+            {
+                if (file != null && file.ContentLength > 0)
+                {
+                    book.Cover = SavePicture(file);
+                }
+                book.Title = book.Titl;
+                book.ISBN = book.ibsn;
+                book.Price = book.Pric;
+                book.AuthorId = book.Author_Id;
+
+                repo.UpdateBook(book);
+
+                return RedirectToAction("ManageBooks", "WorkerDashboard");
+            }
+
+            ViewBag.authors = repo.LoadAuthors();
+            return View();
+        }
+
+        private string SavePicture(HttpPostedFileBase file)
         {
             MemoryStream picture = new MemoryStream();
             file.InputStream.CopyTo(picture);
             byte[] bytes = picture.ToArray();
-            book.Cover = Convert.ToBase64String(bytes);
+            return Convert.ToBase64String(bytes);
         }
     }
 }

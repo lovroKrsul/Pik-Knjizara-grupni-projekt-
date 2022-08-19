@@ -264,7 +264,7 @@ BEGIN
 END
 GO
 
-CREATE OR ALTER PROC UpdateUser
+CREATE OR ALTER PROC UpdateBook
 	@IdBook INT,
     @Title NVARCHAR(250),
     @AuthorId INT,
@@ -272,6 +272,7 @@ CREATE OR ALTER PROC UpdateUser
     @ISBN NVARCHAR(250),
     @InStock INT,
     @Price MONEY,
+	@Cover NVARCHAR(MAX),
     @Publisher NVARCHAR(250),
     @Genre NVARCHAR(250),
     @Tags NVARCHAR(250)
@@ -284,6 +285,7 @@ BEGIN
 		ISBN = @ISBN,
 		InStock = @InStock,
 		Price = @Price,
+		Cover = @Cover,
 		Publisher = @Publisher,
 		Ganre = @Genre,
 		Tags = @Tags
@@ -356,5 +358,3 @@ BEGIN
 	WHERE IDBookstore = @IdBookstore
 END
 GO
-
-exec UpdateBookstore 1, 'PiK KNJIZARA', 'ILICA 24', 'HR12500010170648489890'

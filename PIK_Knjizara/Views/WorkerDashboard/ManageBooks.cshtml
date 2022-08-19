@@ -59,7 +59,7 @@
             @Html.DisplayFor(modelItem => item.Price)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", "Book", new { Id = item.IdBook }, new { @class = "btn btn-outline-dark" }) |
+            @Html.ActionLink("Edit", "UpdateBook", "Book", new { Id = item.IdBook }, new { @class = "btn btn-outline-dark" }) |
             @Html.ActionLink("Buy", "Index", "Book", new { Id = item.IdBook }, new { @class = "btn btn-outline-dark" })
         </td>
     </tr>
