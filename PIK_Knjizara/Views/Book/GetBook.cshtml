@@ -4,22 +4,45 @@
     ViewBag.Title = "GetBook";
 }
 
-<h2>GetBook</h2>
+<input id="btnPanel" type="button" value="Borrow" class="btn btn-outline-dark m-3" />
 
 <div class="card m-3 flex-row">
     <div class="m-2 w-33">
         @Html.Partial("_Book", Model.Book)
     </div>
 
-    @*<div class="m-2 w-75">
-            @Html.Partial("_BuyBook", Model)
-        </div>*@
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
 
-    <div class="m-2 w-75">
-        @Html.Partial("_BorrowBook", Model)
+        <div id="buy" class="m-2 w-75">
+            @Html.Partial("_BuyBook", Model)
+        </div>
+
+        <div id="borrow" class="m-2 w-75">
+            @Html.Partial("_BorrowBook", Model)
+        </div>
+    }
     </div>
-</div>
 @section scripts{
+    <script>
+        $("#borrow").hide();
+        $("#btnPanel").on('click', function () {
+            var btn = document.getElementById("btnPanel");
+            if (btn.value == "Borrow") {
+                btn.value = "Buy";
+                $("#buy").hide();
+                $("#borrow").show();
+
+            } else {
+                btn.value = "Borrow";
+                $("#borrow").hide();
+                $("#buy").show();
+            }
+            console.log(btn.value);
+        });
+    </script>
+
     <script>
         $(document).ready(function () {
             $(".datepicker").datepicker({ defaultDate: new Date() });
