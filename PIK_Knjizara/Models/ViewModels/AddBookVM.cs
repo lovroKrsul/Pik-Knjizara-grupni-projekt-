@@ -17,7 +17,7 @@ namespace PIK_Knjizara.Models.ViewModels
         public Author Authors { get; set; }
         //[Required]
         [Display(Name = "ISBN")]
-        public string isbn { get; set; }
+        public string ibsn { get; set; }
         //[Required]
         [Display(Name = "Price")]
         public decimal Pric { get; set; }

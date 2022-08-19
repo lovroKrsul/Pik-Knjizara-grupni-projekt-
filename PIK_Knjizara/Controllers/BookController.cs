@@ -3,6 +3,7 @@ using PIK_Library.Dal;
 using PIK_Library.Model;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -45,12 +46,16 @@ namespace PIK_Knjizara.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddBook(AddBookVM book)//, HttpPostedFileBase image)
+        public ActionResult AddBook(AddBookVM book, HttpPostedFileBase file)
         {
-            if (ModelState.IsValid)//&& image != null && image.ContentLength > 0)
+            if (ModelState.IsValid && file != null && file.ContentLength > 0)
             {
-
+                MemoryStream picture = new MemoryStream();
+                file.InputStream.CopyTo(picture);
+                byte[] bytes = picture.ToArray();
+                book.Cover = Convert.ToBase64String(bytes);
             }
+
             return View();
         }
     }
