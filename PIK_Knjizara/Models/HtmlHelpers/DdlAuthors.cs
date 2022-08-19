@@ -12,8 +12,8 @@ namespace PIK_Knjizara.Models.HtmlHelpers
         public static MvcHtmlString DDLAuthors(this HtmlHelper html, List<Author> authors)
         {
             TagBuilder selectTag = new TagBuilder("select");
-            selectTag.MergeAttribute("id", "ID");
-            selectTag.MergeAttribute("name", "ID");
+            selectTag.MergeAttribute("id", "Author_Id");
+            selectTag.MergeAttribute("name", "Author_Id");
             selectTag.AddCssClass("form-control");
 
             foreach (Author author in authors)

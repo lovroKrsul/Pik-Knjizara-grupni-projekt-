@@ -51,13 +51,27 @@ namespace PIK_Knjizara.Controllers
         {
             if (ModelState.IsValid && file != null && file.ContentLength > 0)
             {
-                MemoryStream picture = new MemoryStream();
-                file.InputStream.CopyTo(picture);
-                byte[] bytes = picture.ToArray();
-                book.Cover = Convert.ToBase64String(bytes);
+                SavePicture(book, file);
+                book.Title = book.Titl;
+                book.ISBN = book.ibsn;
+                book.Price = book.Pric;
+                book.AuthorId = book.Author_Id;
+
+                repo.AddBook(book);
+
+                return RedirectToAction("Index", "WorkerDashboard");
             }
 
+            ViewBag.authors = repo.LoadAuthors();
             return View();
+        }
+
+        private void SavePicture(AddBookVM book, HttpPostedFileBase file)
+        {
+            MemoryStream picture = new MemoryStream();
+            file.InputStream.CopyTo(picture);
+            byte[] bytes = picture.ToArray();
+            book.Cover = Convert.ToBase64String(bytes);
         }
     }
 }

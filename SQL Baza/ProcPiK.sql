@@ -138,7 +138,7 @@ BEGIN
 END
 GO
 
----------------------------------------------------------Autor----------------------------------------------
+---------------------------------------------------------Worker----------------------------------------------
 
 CREATE OR ALTER PROC DeleteWorker
 	@IdUser INT,
@@ -251,15 +251,16 @@ CREATE OR ALTER PROC AddBook
     @ISBN NVARCHAR(250),
     @InStock INT,
     @Price MONEY,
+	@Cover NVARCHAR(MAX),
     @Publisher NVARCHAR(250),
     @Genre NVARCHAR(250),
     @Tags NVARCHAR(250)
 AS
 BEGIN
-	INSERT INTO Book (Title, AuthorID, Description, ISBN, Used, InStock, Price, Publisher, Ganre, Tags, CreatedAt)
-	VALUES(@Title, @AuthorId, @Description, @ISBN, 0, @InStock, @Price, @Publisher, @Genre, @Tags, GETDATE())
-	INSERT INTO Book (Title, AuthorID, Description, ISBN, Used, InStock, Price, Publisher, Ganre, Tags, CreatedAt)
-	VALUES(@Title, @AuthorId, @Description, @ISBN, 1, @InStock, @Price * 0.8, @Publisher, @Genre, @Tags, GETDATE())
+	INSERT INTO Book (Title, AuthorID, Description, ISBN, Used, InStock, Price, Cover, Publisher, Ganre, Tags, CreatedAt)
+	VALUES(@Title, @AuthorId, @Description, @ISBN, 0, @InStock, @Price, @Cover, @Publisher, @Genre, @Tags, GETDATE())
+	INSERT INTO Book (Title, AuthorID, Description, ISBN, Used, InStock, Price, Cover, Publisher, Ganre, Tags, CreatedAt)
+	VALUES(@Title, @AuthorId, @Description, @ISBN, 1, @InStock, @Price * 0.8, @Cover, @Publisher, @Genre, @Tags, GETDATE())
 END
 GO
 

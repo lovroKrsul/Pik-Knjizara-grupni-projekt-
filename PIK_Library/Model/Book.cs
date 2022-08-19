@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,7 @@ namespace PIK_Library.Model
         public string Publisher { get; set; }
         public string Ganre { get; set; }
         public string Tags { get; set; }
+        [Display (Name = "Release year:")]
         public DateTime ReleasYear { get; set; }
     }
 }
