@@ -14,7 +14,7 @@ namespace PIK_Knjizara.Models.ViewModels
         public string Titl { get; set; }
         //[Required]
         public int Author_Id { get; set; }
-        public Author Authors { get; set; }
+        public IList<Author> Authors { get; set; }
         //[Required]
         [Display(Name = "ISBN")]
         public string ibsn { get; set; }

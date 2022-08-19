@@ -42,6 +42,7 @@ namespace PIK_Knjizara.Controllers
 
         public ActionResult AddBook()
         {
+            ViewBag.authors = repo.LoadAuthors();
             return View();
         }
 

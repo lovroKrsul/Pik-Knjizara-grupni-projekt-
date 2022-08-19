@@ -143,6 +143,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\HtmlHelpers\DdlAuthors.cs" />
     <Compile Include="Models\Validation\BoolRequired.cs" />
     <Compile Include="Models\ForgotPasswordModel.cs" />
     <Compile Include="Models\ViewModels\AddBookVM.cs" />
