@@ -5,13 +5,13 @@
 @foreach (var item in Model)
 {
     <!--TREBA PROMJENIT KAD DODAMO STRANICU KNJIGE DA MATCHA KONTROLER/STRANICU href="//Url.Action("BookDetailsPage", "Book")"" -->
-<div style="background-color:lightgray;padding:20px" class="container">
+<div style="background-color:lightgray;padding:20px" class="container" style="border:1px solid black">
     <!-- FOR SOME REASON SLIKA OPET ZOVE AuthorDetails ??? sto ga crasha jel ne dobi ID  -->
-    <table width="100%">
+    <table width="100%" >
         <tr>
-            <td style="background-color:whitesmoke;border:1px solid black">
-                @{var x = item.Cover}
-                <img class="image" alt="Picture" src="@x" min-width="100" min-height="100" style="display:inline" />
+            <td style="background-color:whitesmoke;border:1px solid black" >
+                @{var x = item.Cover;}
+                <img class="image" alt="Picture" src="data:image/jpeg;base64,@x" min-width="50" min-height="50" style="display:inline" />
             </td>
             <td>
                 <div style="text-align:justify-all" class="row">

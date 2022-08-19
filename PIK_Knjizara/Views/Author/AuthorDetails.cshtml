@@ -7,9 +7,9 @@
     ViewBag.Title = "View";
 }
 
-<h1 style="text-align:center">@{if (Model != null) { Model.FirstName} } @{ if (Model != null) { Model.LastName} }</h1>
-<p style="text-align:center">@{if (Model != null) { Model.Description} }</p>
-<p style="text-align:center">@{if (Model != null) { Model.Biography} }</p>
+<h1 style="text-align:center">@{if (Model != null) { @Model.FirstName } } @{ if (Model != null) { @Model.LastName} }</h1>
+<p style="text-align:center">@{if (Model != null) { @Model.Description } }</p>
+<p style="text-align:center">@{if (Model != null) { @Model.Biography} }</p>
 
 <div id="partial" style="margin-top:20px">
 </div>

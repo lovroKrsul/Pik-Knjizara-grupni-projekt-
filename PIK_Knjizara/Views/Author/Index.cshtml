@@ -1,11 +1,20 @@
-﻿@model PIK_Library.Model.Author
+﻿@model IList<PIK_Library.Model.Author>
 
 @{
     ViewBag.Title = "View";
 }
+<div  id="partial">
 
-<h2>Ovo ce bit promjenjeno u detalje o autoru i lista knjiga</h2>
+</div>
+
+
 
 @Html.ActionLink("Add", "Create", "Author", new { @class = "btn btn-outline-dark" })
 @Html.ActionLink("Edit", "Edit", "Author", new { @class = "btn btn-outline-dark" })
 @Html.ActionLink("Delete", "Delete", "Author", new { @class = "btn btn-outline-dark" })
+
+@section Scripts   {
+    <script>
+        $('#partial').load("/Author/LoadAuthors")
+    </script>
+}

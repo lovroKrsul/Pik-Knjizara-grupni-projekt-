@@ -24,8 +24,8 @@ namespace PIK_Library.Model
         [Display(Name = "Opis:")]
         [Required(ErrorMessage = "* Ovo je obvezno polje")]
         public string Description { get; set; }
-      
 
+        public override string ToString() => $"{FirstName} {LastName}";
     }
    
 }

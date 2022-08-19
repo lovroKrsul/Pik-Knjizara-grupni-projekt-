@@ -17,11 +17,19 @@ namespace PIK_Knjizara.Controllers
         // GET: Author
         public ActionResult Index()
         {
-            return View();
+            
+            IList<Author> authors= new List<Author>();
+            authors=repo.LoadAuthors();
+            return View("Index",model:authors);
         }
 
       
-
+        public ActionResult LoadAuthors()
+        {
+            IEnumerable<Author> Authors = new List<Author>();
+            Authors = repo.LoadAuthors();
+            return PartialView("_Authors", model: Authors);
+        }
         // GET: Author/Create
         public ActionResult Create()
         {
@@ -102,9 +110,7 @@ namespace PIK_Knjizara.Controllers
          [HttpGet]
         public ActionResult AuthorDetails(int id)
         {
-            IEnumerable<Book> Books = new List<Book>();
-            Books = repo.LoadBooks().Where(Book => Book.AuthorId == id);
-            ViewBag.books = Books;
+           
             return View("AuthorDetails", model: repo.LoadAuthorByID(id));
             
         }
@@ -114,10 +120,29 @@ namespace PIK_Knjizara.Controllers
         {
             
             IEnumerable<Book> Books = new List<Book>();
-            Books = repo.LoadBooks().Where(Book => Book.AuthorId == id);
+            Books = repo.LoadBooks().Where(Book => Book.AuthorId == id).ToList();
             return PartialView("_AuthorBooks", model: Books);
         }
+        public ActionResult GetAutocompleteAuthors(string term)
+        {
+            IList<Author> Authors = repo.LoadAuthors();
+            
+            var find = Authors.Where(a => a.ToString().Contains(term.ToLower())).Select(a => new
+            {
+                label = a.FirstName + " " + a.LastName,
+                value = a.ID
+            });
+            if(find.Count() ==0)
+            {
+                find = Authors.Where(a => a.LastName.Contains(term.ToLower())).Select(a => new
+                {
+                    label = a.FirstName + " " + a.LastName,
+                    value = a.ID
+                });
+            }
 
+            return Json(find, JsonRequestBehavior.AllowGet);
+        }
     }
 
 }

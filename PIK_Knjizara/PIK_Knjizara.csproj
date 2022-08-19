@@ -276,6 +276,7 @@
     <Content Include="Views\Book\AddBook.cshtml" />
     <Content Include="Views\Author\AuthorDetails.cshtml" />
     <Content Include="Views\Shared\_AuthorBooks.cshtml" />
+    <Content Include="Views\Shared\_Authors.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
