@@ -9,19 +9,19 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.Book.Used, htmlAttributes: new { @class = "control-label col-md-2" })
-            @Html.DisplayFor(model => model.Book.Used)
+            <input type="checkbox" class = "form-check-input" id="BookUsed" onkeyup="sum();" name="BookUsed" value="@Model.Book.Used" disabled/>
         </div>
         
         <div class="form-group mt-3">
             @Html.LabelFor(model => model.PaymentMethod, htmlAttributes: new { @class = "control-label col-md-2 w-100" })
             <div class="col-md-10">
                 <div class="checkbox">
+                    <span>In store payment</span>
                     <label class="switch">
-                        <input type="checkbox"/>
+                        <input type="checkbox" id="PaymentMethod" onkeyup="sum();" name="PaymentMethod" value="@Model.PaymentMethod" />
                         <span class="slider"></span>
                     </label>
-                    <span id="paymentMethod">Paypal payment</span>
-                    @Html.CheckBoxFor(model => model.PaymentMethod, htmlAttributes: new { @class = "form-check-input form-switch" })
+                    <span>Paypal payment</span>
                     @Html.ValidationMessageFor(model => model.PaymentMethod, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -29,7 +29,7 @@
 
         <div class="form-group mt-3">
             @Html.LabelFor(model => model.Delivery, htmlAttributes: new { @class = "control-label col-md-2" })
-                    @Html.EditorFor(model => model.Delivery)
+                    @Html.CheckBoxFor(model => model.Delivery, htmlAttributes: new { @class = "form-check-input" })
                     @Html.ValidationMessageFor(model => model.Delivery, "", new { @class = "text-danger" })
         </div>
 

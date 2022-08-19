@@ -48,6 +48,16 @@ namespace PIK_Knjizara.Controllers
             return View(getBookVM);
         }
 
+        [HttpPost]
+        public ActionResult GetBook(GetBookVM book)
+        {
+            if (ModelState.IsValid)
+            {
+
+            }
+            return View();
+        }
+
         public ActionResult AddBook()
         {
             return View();
