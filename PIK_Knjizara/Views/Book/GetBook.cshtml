@@ -11,19 +11,14 @@
         @Html.Partial("_Book", Model.Book)
     </div>
 
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
-        <div id="buy" class="m-2 w-75">
-            @Html.Partial("_BuyBook", Model)
-        </div>
-
-        <div id="borrow" class="m-2 w-75">
-            @Html.Partial("_BorrowBook", Model)
-        </div>
-    }
+    <div id="buy" class="m-2 w-75">
+        @Html.Partial("_BuyBook", Model)
     </div>
+
+    <div id="borrow" class="m-2 w-75">
+        @Html.Partial("_BorrowBook", Model)
+    </div>
+</div>
 @section scripts{
     <script>
         $("#borrow").hide();

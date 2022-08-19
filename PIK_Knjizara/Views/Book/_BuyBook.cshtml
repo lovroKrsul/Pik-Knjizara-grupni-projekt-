@@ -1,6 +1,6 @@
 ﻿@model PIK_Knjizara.Models.ViewModels.GetBookVM
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("GetBook", "Book", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
@@ -10,7 +10,7 @@
             @Html.LabelFor(model => model.Book.Price, htmlAttributes: new { @class = "w-100" })
             @Html.DisplayFor(model => model.Book.Price) EUR
         </div>
-        
+
         <div class="form-group mt-3">
             @Html.LabelFor(model => model.Book.Used, htmlAttributes: new { @class = "control-label col-md-2" })
             <input type="checkbox" class="form-check-input" id="BookUsed" onkeyup="sum();" name="BookUsed" value="@Model.Book.Used" disabled />
@@ -38,7 +38,7 @@
         </div>
 
 
-        @Html.HiddenFor(model => model.Book)
+        @Html.HiddenFor(model => model.Book.IdBook)
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10 mt-3">
