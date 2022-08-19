@@ -1,45 +1,55 @@
 ﻿@model PIK_Knjizara.Models.ViewModels.GetBookVM
 
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>GetBookVM</h4>
-        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.PaymentMethod, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Book.BorrowPrice, htmlAttributes: new { @class = "w-100" })
+            @Html.DisplayFor(model => model.Book.BorrowPrice) EUR
+        </div>
+        
+        <div class="form-group mt-3">
+            @Html.LabelFor(model => model.Book.Used, htmlAttributes: new { @class = "control-label col-md-2" })
+            <input type="checkbox" class="form-check-input" id="BookUsed" onkeyup="sum();" name="BookUsed" value="@Model.Book.Used" disabled />
+        </div>
+
+        <div class="form-group mt-3">
+            @Html.LabelFor(model => model.PaymentMethod, htmlAttributes: new { @class = "control-label col-md-2 w-100" })
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.EditorFor(model => model.PaymentMethod)
+                    <span>In store payment</span>
+                    <label class="switch">
+                        <input type="checkbox" id="PaymentMethod" onkeyup="sum();" name="PaymentMethod" value="@Model.PaymentMethod" />
+                        <span class="slider"></span>
+                    </label>
+                    <span>Paypal payment</span>
                     @Html.ValidationMessageFor(model => model.PaymentMethod, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Delivery, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Delivery)
-                    @Html.ValidationMessageFor(model => model.Delivery, "", new { @class = "text-danger" })
-                </div>
-            </div>
+        <div class="form-group mt-3">
+            @Html.LabelFor(model => model.Delivery, htmlAttributes: new { @class = "control-label w-100" })
+            @Html.CheckBoxFor(model => model.Delivery, htmlAttributes: new { @class = "form-check-input" })
+            @Html.ValidationMessageFor(model => model.Delivery, "", new { @class = "text-danger" })
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ReturnDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="form-group mt-3">
+            @Html.LabelFor(model => model.ReturnDate, htmlAttributes: new { @class = "control-label col-md-2 w-100" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ReturnDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.ReturnDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
                 @Html.ValidationMessageFor(model => model.ReturnDate, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
+        @Html.HiddenFor(model => model.Book)
+
+        <div class="form-group mt-3">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Borrow" class="btn btn-outline-dark" />
             </div>
         </div>
     </div>

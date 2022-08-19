@@ -45,6 +45,7 @@ namespace PIK_Knjizara.Controllers
             Book book = repo.LoadBook(id);
             book.Cover = "data:image/jpeg;base64," + book.Cover;
             getBookVM.Book = book;
+            getBookVM.ReturnDate = DateTime.Now.AddDays(1);
             return View(getBookVM);
         }
 

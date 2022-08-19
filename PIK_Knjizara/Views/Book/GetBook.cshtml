@@ -11,12 +11,18 @@
         @Html.Partial("_Book", Model.Book)
     </div>
 
+    @*<div class="m-2 w-75">
+            @Html.Partial("_BuyBook", Model)
+        </div>*@
 
     <div class="m-2 w-75">
-        @Html.Partial("_BuyBook", Model)
-    </div>
-
-    <div class="m-2">
         @Html.Partial("_BorrowBook", Model)
     </div>
 </div>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $(".datepicker").datepicker({ defaultDate: new Date() });
+        });
+    </script>
+}
