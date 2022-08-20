@@ -1,4 +1,4 @@
-﻿@model PIK_Knjizara.Models.ViewModels.GetBookVM
+﻿@model PIK_Library.Model.GetBook
 
 @using (Html.BeginForm())
 {
@@ -10,23 +10,23 @@
             @Html.LabelFor(model => model.Book.BorrowPrice, htmlAttributes: new { @class = "w-100" })
             @Html.DisplayFor(model => model.Book.BorrowPrice) EUR
         </div>
-        
+
         <div class="form-group mt-3">
             @Html.LabelFor(model => model.Book.Used, htmlAttributes: new { @class = "control-label col-md-2" })
             <input type="checkbox" class="form-check-input" id="BookUsed" onkeyup="sum();" name="BookUsed" value="@Model.Book.Used" disabled />
         </div>
 
         <div class="form-group mt-3">
-            @Html.LabelFor(model => model.PaymentMethod, htmlAttributes: new { @class = "control-label col-md-2 w-100" })
+            @Html.LabelFor(model => model.InStorePayment, htmlAttributes: new { @class = "control-label col-md-2 w-100" })
             <div class="col-md-10">
                 <div class="checkbox">
-                    <span>In store payment</span>
+                    <span>Paypal payment</span>
                     <label class="switch">
-                        <input type="checkbox" id="PaymentMethod" onkeyup="sum();" name="PaymentMethod" value="@Model.PaymentMethod" />
+                        <input type="checkbox" id="InStorePayment" onkeyup="sum();" name="InStorePayment" value="@Model.InStorePayment" />
                         <span class="slider"></span>
                     </label>
-                    <span>Paypal payment</span>
-                    @Html.ValidationMessageFor(model => model.PaymentMethod, "", new { @class = "text-danger" })
+                    <span>In store payment</span>
+                    @Html.ValidationMessageFor(model => model.InStorePayment, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
@@ -45,6 +45,7 @@
             </div>
         </div>
 
+        <input type="checkbox" hidden id="Buy" onkeyup="sum();" name="Buy" value="@Model.Buy" disabled />
         @Html.HiddenFor(model => model.Book.IdBook)
 
         <div class="form-group mt-3">

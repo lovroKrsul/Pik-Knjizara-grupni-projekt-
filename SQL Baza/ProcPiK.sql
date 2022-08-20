@@ -138,7 +138,7 @@ BEGIN
 END
 GO
 
----------------------------------------------------------Autor----------------------------------------------
+---------------------------------------------------------Worker----------------------------------------------
 
 CREATE OR ALTER PROC DeleteWorker
 	@IdUser INT,
@@ -300,6 +300,39 @@ BEGIN
 END
 GO
 
+---------------------------------------------------------Book purchase----------------------------------------------
+
+CREATE OR ALTER PROC AddPurchase
+	@InStorePayment BIT,
+	@Delivery BIT,
+	@UserId INT,
+	@BookId INT
+AS
+BEGIN
+	INSERT INTO Purchase (CreatedAt, InStorePayment, Delivery, UserId, BookID)
+	VALUES (GETDATE(), @InStorePayment, @Delivery, @UserId, @BookId)
+	UPDATE Book
+	SET InStock = InStock - 1
+	WHERE IDBook = @BookId
+END
+GO
+
+CREATE OR ALTER PROC AddBorrow
+	@ReturnDate DATETIME,
+	@InStorePayment BIT,
+	@Delivery BIT,
+	@UserId INT,
+	@BookId INT
+AS
+BEGIN
+	INSERT INTO BorrowBook (CreatedAt, ReturnDate, InStorePayment, Delivery, BookstoreId, UserId, BookId)
+	VALUES (GETDATE(), @ReturnDate, @InStorePayment, @Delivery, 1, @UserId, @BookId)
+	UPDATE Book
+	SET InStock = InStock - 1
+	WHERE IDBook = @BookId
+END
+GO
+
 ---------------------------------------------------------Contact----------------------------------------------
 
 CREATE OR ALTER PROC AddContact
@@ -355,5 +388,3 @@ BEGIN
 	WHERE IDBookstore = @IdBookstore
 END
 GO
-
-exec UpdateBookstore 1, 'PiK KNJIZARA', 'ILICA 24', 'HR12500010170648489890'

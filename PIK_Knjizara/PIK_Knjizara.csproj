@@ -148,7 +148,6 @@
     <Compile Include="Models\ViewModels\AddBookVM.cs" />
     <Compile Include="Models\ViewModels\AddWorkerModel.cs" />
     <Compile Include="Models\ViewModels\BookVM.cs" />
-    <Compile Include="Models\ViewModels\GetBookVM.cs" />
     <Compile Include="Models\ViewModels\PasswordResetVM.cs" />
     <Compile Include="Models\ViewModels\RegisterViewModel.cs" />
     <Compile Include="Models\ViewModels\UpdateUserModel.cs" />

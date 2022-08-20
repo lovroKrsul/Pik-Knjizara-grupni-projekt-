@@ -41,7 +41,7 @@ namespace PIK_Knjizara.Controllers
 
         public ActionResult GetBook(int id)
         {
-            GetBookVM getBookVM = new GetBookVM();
+            GetBook getBookVM = new GetBook();
             Book book = repo.LoadBook(id);
             book.Cover = "data:image/jpeg;base64," + book.Cover;
             getBookVM.Book = book;
@@ -50,13 +50,34 @@ namespace PIK_Knjizara.Controllers
         }
 
         [HttpPost]
-        public ActionResult GetBook(GetBookVM book)
+        public ActionResult GetBook(GetBook book)
         {
             if (ModelState.IsValid)
             {
-
+                if (book.Buy)
+                {
+                    BuyBook(book);
+                }
+                else
+                {
+                    BorrowBook(book);
+                }
             }
             return View();
+        }
+
+        private void BorrowBook(GetBook book)
+        {
+            User user = (User)Session["user"];
+            book.User = repo.LoadUser(user.Email);
+            repo.AddBorrow(book);
+        }
+
+        private void BuyBook(GetBook book)
+        {
+            User user = (User)Session["user"];
+            book.User = repo.LoadUser(user.Email);
+            repo.AddPurchase(book);
         }
 
         public ActionResult AddBook()

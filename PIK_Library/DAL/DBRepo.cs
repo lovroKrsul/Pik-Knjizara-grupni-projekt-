@@ -454,7 +454,32 @@ namespace PIK_Library.DAL
                 book.IdBook);
         }
 
-        //-------------------------------------------------------------------------------- Book --------------------------------------------------------------------------------
+        //-------------------------------------------------------------------------------- Contact --------------------------------------------------------------------------------
+        
+        public void AddPurchase(GetBook book)
+        {
+            SqlHelper.ExecuteNonQuery(
+                CS,
+                nameof(AddPurchase),
+                book.InStorePayment,
+                book.Delivery,
+                book.User.IdUser,
+                book.Book.IdBook);
+        }
+
+        public void AddBorrow(GetBook book)
+        {
+            SqlHelper.ExecuteNonQuery(
+                CS,
+                nameof(AddPurchase),
+                book.ReturnDate,
+                book.InStorePayment,
+                book.Delivery,
+                book.User.IdUser,
+                book.Book.IdBook);
+        }
+
+        //-------------------------------------------------------------------------------- Contact --------------------------------------------------------------------------------
 
         public IList<ContactUs> LoadContacts()
         {
@@ -525,5 +550,6 @@ namespace PIK_Library.DAL
                 bookstore.Address,
                 bookstore.IBAN);
         }
+
     }
 }
