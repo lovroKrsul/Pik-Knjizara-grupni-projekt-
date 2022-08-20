@@ -11,6 +11,7 @@ namespace PIK_Library.Model
         public int IdBorrow { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime ReturnDate { get; set; }
+        public int Overdue { get; set; }
         public bool InStorePayment { get; set; }
         public bool Delivery { get; set; }
         public int UserId { get; set; }

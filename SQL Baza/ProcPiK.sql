@@ -347,6 +347,16 @@ BEGIN
 END
 GO
 
+CREATE OR ALTER PROC LoadReturn
+	@IdBorrow INT
+AS
+BEGIN
+	SELECT *
+	FROM BorrowBook
+	WHERE Returned = 0 AND IDBorrow = @IdBorrow
+END
+GO
+
 ---------------------------------------------------------Contact----------------------------------------------
 
 CREATE OR ALTER PROC AddContact

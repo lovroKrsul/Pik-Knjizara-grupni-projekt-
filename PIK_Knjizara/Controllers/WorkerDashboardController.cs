@@ -66,5 +66,16 @@ namespace PIK_Knjizara.Controllers
         {
             return View(repo.LoadReturns());
         }
+
+        public ActionResult ReturnBook(int id)
+        {
+            ReturnBook returnBook = repo.LoadReturn(id);
+            if (returnBook.ReturnDate < DateTime.Now)
+            {
+                returnBook.Overdue = (DateTime.Now - returnBook.ReturnDate).Days;
+            }
+
+            return View(returnBook);
+        }
     }
 }

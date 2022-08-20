@@ -505,6 +505,27 @@ namespace PIK_Library.DAL
             return returnBooks;
         }
 
+        public ReturnBook LoadReturn(int id)
+        {
+            var tblBooks = SqlHelper.ExecuteDataset(CS, nameof(LoadReturn), id).Tables[0];
+
+            if (tblBooks.Rows.Count == 0) return null;
+
+            DataRow row = tblBooks.Rows[0];
+            return new  ReturnBook
+                    {
+                        IdBorrow = (int)row[nameof(ReturnBook.IdBorrow)],
+                        CreatedAt = DateTime.Parse(row[nameof(ReturnBook.CreatedAt)].ToString()),
+                        ReturnDate = DateTime.Parse(row[nameof(ReturnBook.ReturnDate)].ToString()),
+                        InStorePayment = (bool)row[nameof(ReturnBook.InStorePayment)],
+                        Delivery = (bool)row[nameof(ReturnBook.Delivery)],
+                        UserId = (int)row[nameof(ReturnBook.UserId)],
+                        User = LoadUserId((int)row[nameof(ReturnBook.UserId)]),
+                        BookId = (int)row[nameof(ReturnBook.BookId)],
+                        Book = LoadBook((int)row[nameof(ReturnBook.BookId)])
+                    };
+        }
+
         public void AddReturn(ReturnBook book)
         {
             throw new NotImplementedException();

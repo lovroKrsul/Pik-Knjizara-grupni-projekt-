@@ -45,6 +45,7 @@ namespace PIK_Library.Dal
 
         //---------------------ReturnBook------------------------------------
         IList<ReturnBook> LoadReturns();
+        ReturnBook LoadReturn(int id);
         void AddReturn(ReturnBook book);
 
         //---------------------Contact------------------------------------

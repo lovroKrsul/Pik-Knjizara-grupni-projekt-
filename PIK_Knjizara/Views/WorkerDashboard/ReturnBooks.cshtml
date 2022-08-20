@@ -1,9 +1,5 @@
 ﻿@model IEnumerable<PIK_Library.Model.ReturnBook>
 
-@{
-    ViewBag.Title = "ReturnBooks";
-}
-
 <h2>ReturnBooks</h2>
 
 <p>
@@ -53,15 +49,13 @@
             @Html.DisplayFor(modelItem => item.Delivery)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.UserId)
+            @item.User.ToString()
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.BookId)
+            @Html.DisplayFor(modelItem => item.Book.Title)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Return", "ReturnBook", "WorkerDashboard", new { Id = item.IdBorrow }, new { @class = "btn btn-outline-dark" })
         </td>
     </tr>
 }
