@@ -10,7 +10,6 @@ namespace PIK_Library.Dal
     public interface IRepo
     {
         //---------------------User-----------------------------
-
         User AuthenticateUser(string username, string password);
         IList<User> LoadUsers();
         User LoadUser(string email);
@@ -21,6 +20,9 @@ namespace PIK_Library.Dal
         void DeleteUser(User user);
         string GetPersonNumber();
 
+        //---------------------Worker------------------------------------
+        void DeleteWorker(User user);
+
         //---------------------Author-----------------------------------
         int AddAuthor(Author a);
         IList<Author> LoadAuthors();
@@ -28,7 +30,6 @@ namespace PIK_Library.Dal
         Author LoadAuthorByName(string name);
         int UpdateAuthorByName(Author a);
         int DeleteAuthorByName(string name);
-
 
         //---------------------Book------------------------------------
         IList<Book> LoadBooks();
@@ -38,15 +39,16 @@ namespace PIK_Library.Dal
         void UpdateBook(Book book);
         void DeleteBook(Book book);
 
-        //---------------------Worker------------------------------------
-        void DeleteWorker(User user);
+        //---------------------GetBook------------------------------------
+        void AddPurchase(GetBook book);
+        void AddBorrow(GetBook book);
 
         //---------------------Contact------------------------------------
         IList<ContactUs> LoadContacts();
         void AddContact(ContactUs contact);
         void ContactViewed(int id);
 
-        //---------------------Contact------------------------------------
+        //---------------------BookStore------------------------------------
         Bookstore LoadBookstore();
         void UpdateBookstore(Bookstore bookstore);
     }

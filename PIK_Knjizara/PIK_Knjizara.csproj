@@ -194,6 +194,7 @@
     <Content Include="Content\jquery.fancybox-buttons.css" />
     <Content Include="Content\jquery.fancybox-thumbs.css" />
     <Content Include="Content\jquery.fancybox.css" />
+    <Content Include="Content\Slider.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -294,6 +295,10 @@
     <Content Include="Views\Search\BookSearch.cshtml" />
     <Content Include="Views\Search\AuthorSearch.cshtml" />
     <Content Include="Views\Shared\_GetAuthors.cshtml" />
+    <Content Include="Views\Book\GetBook.cshtml" />
+    <Content Include="Views\Book\_BuyBook.cshtml" />
+    <Content Include="Views\Book\_Book.cshtml" />
+    <Content Include="Views\Book\_BorrowBook.cshtml" />
     <Content Include="Views\Book\UpdateBook.cshtml" />
   </ItemGroup>
   <ItemGroup>

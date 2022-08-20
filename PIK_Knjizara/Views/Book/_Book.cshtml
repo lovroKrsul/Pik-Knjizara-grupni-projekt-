@@ -1,0 +1,22 @@
+﻿@model PIK_Library.Model.Book
+
+<div class="card">
+    <img class="image m-2" src="@Model.Cover" alt="Picture" />
+
+    <div class="card-body">
+
+        <div class="d-flex flex-row">
+            <div class="w-75">
+                <h4>
+                    @Html.DisplayFor(model => model.Title)
+                </h4>
+                <h5>
+                    @Model.Author.ToString()
+                </h5>
+                <p>
+                    @Html.DisplayFor(model => model.Description)
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
