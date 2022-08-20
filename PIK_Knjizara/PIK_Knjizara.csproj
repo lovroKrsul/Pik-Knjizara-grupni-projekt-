@@ -300,6 +300,7 @@
     <Content Include="Views\Book\_Book.cshtml" />
     <Content Include="Views\Book\_BorrowBook.cshtml" />
     <Content Include="Views\Book\UpdateBook.cshtml" />
+    <Content Include="Views\WorkerDashboard\ReturnBooks.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -64,6 +64,7 @@
     <Compile Include="Model\ContactUs.cs" />
     <Compile Include="Model\Criptography.cs" />
     <Compile Include="Model\GetBook.cs" />
+    <Compile Include="Model\ReturnBook.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

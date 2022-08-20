@@ -336,6 +336,17 @@ BEGIN
 END
 GO
 
+---------------------------------------------------------Book Return----------------------------------------------
+
+CREATE OR ALTER PROC LoadReturns
+AS
+BEGIN
+	SELECT *
+	FROM BorrowBook
+	WHERE Returned = 0
+END
+GO
+
 ---------------------------------------------------------Contact----------------------------------------------
 
 CREATE OR ALTER PROC AddContact

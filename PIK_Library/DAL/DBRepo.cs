@@ -452,7 +452,7 @@ namespace PIK_Library.DAL
                 book.IdBook);
         }
 
-        //-------------------------------------------------------------------------------- Contact --------------------------------------------------------------------------------
+        //-------------------------------------------------------------------------------- PurchaseBook --------------------------------------------------------------------------------
         
         public void AddPurchase(GetBook book)
         {
@@ -475,6 +475,39 @@ namespace PIK_Library.DAL
                 book.Delivery,
                 book.User.IdUser,
                 book.Book.IdBook);
+        }
+
+        //-------------------------------------------------------------------------------- Return Book --------------------------------------------------------------------------------
+
+        public IList<ReturnBook> LoadReturns()
+        {
+            IList<ReturnBook> returnBooks = new List<ReturnBook>();
+
+            var tblBooks = SqlHelper.ExecuteDataset(CS, nameof(LoadReturns)).Tables[0];
+
+            foreach (DataRow row in tblBooks.Rows)
+            {
+                returnBooks.Add(
+                    new ReturnBook
+                    {
+                        IdBorrow = (int)row[nameof(ReturnBook.IdBorrow)],
+                        CreatedAt = DateTime.Parse(row[nameof(ReturnBook.CreatedAt)].ToString()),
+                        ReturnDate = DateTime.Parse(row[nameof(ReturnBook.ReturnDate)].ToString()),
+                        InStorePayment = (bool)row[nameof(ReturnBook.InStorePayment)],
+                        Delivery = (bool)row[nameof(ReturnBook.Delivery)],
+                        UserId = (int)row[nameof(ReturnBook.UserId)],
+                        User = LoadUserId((int)row[nameof(ReturnBook.UserId)]),
+                        BookId = (int)row[nameof(ReturnBook.BookId)],
+                        Book = LoadBook((int)row[nameof(ReturnBook.BookId)])
+                    });
+            }
+
+            return returnBooks;
+        }
+
+        public void AddReturn(ReturnBook book)
+        {
+            throw new NotImplementedException();
         }
 
         //-------------------------------------------------------------------------------- Contact --------------------------------------------------------------------------------
@@ -548,6 +581,5 @@ namespace PIK_Library.DAL
                 bookstore.Address,
                 bookstore.IBAN);
         }
-
     }
 }

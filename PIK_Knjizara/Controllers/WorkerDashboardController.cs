@@ -61,5 +61,10 @@ namespace PIK_Knjizara.Controllers
 
             return View();
         }
+
+        public ActionResult ReturnBooks()
+        {
+            return View(repo.LoadReturns());
+        }
     }
 }

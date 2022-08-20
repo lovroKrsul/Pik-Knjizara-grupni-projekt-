@@ -43,6 +43,10 @@ namespace PIK_Library.Dal
         void AddPurchase(GetBook book);
         void AddBorrow(GetBook book);
 
+        //---------------------ReturnBook------------------------------------
+        IList<ReturnBook> LoadReturns();
+        void AddReturn(ReturnBook book);
+
         //---------------------Contact------------------------------------
         IList<ContactUs> LoadContacts();
         void AddContact(ContactUs contact);
