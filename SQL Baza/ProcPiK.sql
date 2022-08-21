@@ -357,6 +357,20 @@ BEGIN
 END
 GO
 
+CREATE OR ALTER PROC AddReturn
+	@IdBorrow INT,
+	@IdBook INT
+AS
+BEGIN
+	UPDATE Book
+	SET InStock = InStock + 1
+	WHERE IDBook = @IdBook
+	UPDATE BorrowBook
+	SET Returned = 1
+	WHERE IDBorrow = @IdBorrow
+END
+GO
+
 ---------------------------------------------------------Contact----------------------------------------------
 
 CREATE OR ALTER PROC AddContact

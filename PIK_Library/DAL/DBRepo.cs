@@ -528,7 +528,11 @@ namespace PIK_Library.DAL
 
         public void AddReturn(ReturnBook book)
         {
-            throw new NotImplementedException();
+            SqlHelper.ExecuteNonQuery
+                (CS,
+                nameof(AddReturn),
+                book.IdBorrow,
+                book.Book.IdBook);
         }
 
         //-------------------------------------------------------------------------------- Contact --------------------------------------------------------------------------------

@@ -77,5 +77,27 @@ namespace PIK_Knjizara.Controllers
 
             return View(returnBook);
         }
+
+        [HttpPost]
+        public ActionResult ReturnBook(ReturnBook returnBook)
+        {
+            if (ModelState.IsValid)
+            {
+                if (returnBook.Book.Used)
+                {
+                    returnBook.Book = repo.LoadBook(returnBook.Book.IdBook);
+                    repo.AddReturn(returnBook);
+                }
+                else
+                {
+                    returnBook.Book = repo.LoadBookUsed(returnBook.Book.Title);
+                    repo.AddReturn(returnBook);
+                }
+
+                return RedirectToAction("ReturnBooks");
+            }
+
+            return View(returnBook);
+        }
     }
 }
