@@ -49,12 +49,12 @@ namespace PIK_Knjizara.Controllers
                     return LogIn();
                 }
 
-                if (authUser.Workplace != null)
+                if (authUser.Workplace != null && authUser.Workplace != "")
                 {
                     Session["worker"] = authUser;
                     return RedirectToAction("Index", "WorkerDashboard");
                 }
-                if (authUser.PersonCode != null)
+                if (authUser.PersonCode != null && authUser.PersonCode != "")
                 {
                     Session["user"] = authUser;
                     return RedirectToAction("Index", "Home");

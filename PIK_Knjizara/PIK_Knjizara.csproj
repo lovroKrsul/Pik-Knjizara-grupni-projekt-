@@ -302,6 +302,8 @@
     <Content Include="Views\Book\UpdateBook.cshtml" />
     <Content Include="Views\WorkerDashboard\ReturnBooks.cshtml" />
     <Content Include="Views\WorkerDashboard\ReturnBook.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\_BorrowedBooksUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

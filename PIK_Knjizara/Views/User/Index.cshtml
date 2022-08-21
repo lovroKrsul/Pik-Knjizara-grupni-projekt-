@@ -1,0 +1,38 @@
+﻿@model IEnumerable<PIK_Library.Model.ReturnBook>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Borrowed books</h2>
+
+<div class="d-flex flex-row border-4">
+    <div>
+        @Html.Partial("_BorrowedBooksUser", Model)
+    </div>
+    <div>
+        <h5 class="w-100">User management</h5>
+
+        @Html.ActionLink("Update", "UpdateUser", "User", null, new { @class = "btn btn-lg btn-outline-dark" })
+
+        <div class="m-1">
+            <input id="btnDelete" type="button" value="Delete" class="btn btn-lg btn-danger" />
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $("#btnDelete").on('click', function () {
+            var dialog = confirm("Delete account");
+            if (dialog) {
+                $.ajax({
+                    url: '@Url.Action("Delete", "User")',
+                    data: { id: @ViewBag.user.IdUser}
+                })
+            } else {
+                console.log("Not");
+            }
+        })
+    </script>
+}

@@ -11,12 +11,24 @@ namespace PIK_Knjizara.Controllers
 {
     public class UserController : Controller
     {
+        IRepo repo = (System.Web.HttpContext.Current.Application["database"] as IRepo);
         private IList<User> _allUsers;
 
         // GET: User
         public ActionResult Index()
         {
-            return View();
+            User user = (User)Session["user"];
+            if (user == null)
+            {
+                return RedirectToAction("LogIn", "Home");
+            }
+            IList<ReturnBook> returnBooks = repo.LoadReturns().Where(b => b.UserId == user.IdUser).ToList();
+            foreach (ReturnBook book in returnBooks)
+            {
+                book.Book.Cover = "data:image/jpeg;base64," + book.Book.Cover;
+            }
+            ViewBag.user = user;
+            return View(returnBooks);
         }
 
         public ActionResult ForgotPassword()
@@ -29,7 +41,6 @@ namespace PIK_Knjizara.Controllers
         {
             if (ModelState.IsValid)
             {
-                IRepo repo = (System.Web.HttpContext.Current.Application["database"] as IRepo);
                 _allUsers = repo.LoadUsers();
 
                 if ((_allUsers.FirstOrDefault().Email = user.Email) != null)

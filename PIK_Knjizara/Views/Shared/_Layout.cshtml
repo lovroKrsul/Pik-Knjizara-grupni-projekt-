@@ -48,7 +48,7 @@
                     @if (Session["user"] != null)
                     {
                         <li class="nav-item">
-                            @Html.ActionLink(Session["user"].ToString(), "UpdateUser", "User", null, new { @class = "nav-link" })
+                            @Html.ActionLink(Session["user"].ToString(), "Index", "User", null, new { @class = "nav-link" })
                         </li>
                         <li class="nav-item">
                             @Html.ActionLink("Logout", "Logout", "Home", null, new { @class = "btn btn-outline-warning" })

@@ -230,7 +230,7 @@ AS
 BEGIN 
 	SELECT *
 	FROM Book
-	WHERE IDBook = @BookId AND Used = 0 AND DeletedAt IS NULL
+	WHERE IDBook = @BookId AND DeletedAt IS NULL
 END
 GO
 
@@ -402,7 +402,7 @@ BEGIN
 END
 GO
 
----------------------------------------------------------Contact----------------------------------------------
+---------------------------------------------------------Bookstore----------------------------------------------
 
 CREATE OR ALTER PROC LoadBookstore
 AS

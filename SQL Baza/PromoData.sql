@@ -5,8 +5,8 @@ GO
 
 INSERT INTO Person(FirstName, LastName, Email, OIB, Workplace, CreatedAt, Password)
 VALUES('ADMIN', 'ADMIN', 'admin@admin.com', '', 'admin', GETDATE(), '3C9909AFEC25354D551DAE21590BB26E38D53F2173B8D3DC3EEE4C047E7AB1C1EB8B85103E3BE7BA613B31BB5C9C36214DC9F14A42FD7A2FDB84856BCA5C44C2')
-INSERT INTO Person(FirstName, LastName, Email, City, ZipCode, StreetName, StreetNumber, CreatedAt, Password)
-VALUES('PERO', 'PERIC', 'demo@demo.com', 'Rijeka', '36000', 'Ilica', '242', GETDATE(), '3C9909AFEC25354D551DAE21590BB26E38D53F2173B8D3DC3EEE4C047E7AB1C1EB8B85103E3BE7BA613B31BB5C9C36214DC9F14A42FD7A2FDB84856BCA5C44C2')
+INSERT INTO Person(FirstName, LastName, PersonCode, Email, City, ZipCode, StreetName, StreetNumber, CreatedAt, Password)
+VALUES('PERO', 'PERIC', 'demo@demo.com', 'K20220811001', 'Rijeka', '36000', 'Ilica', '242', GETDATE(), '3C9909AFEC25354D551DAE21590BB26E38D53F2173B8D3DC3EEE4C047E7AB1C1EB8B85103E3BE7BA613B31BB5C9C36214DC9F14A42FD7A2FDB84856BCA5C44C2')
 
 ---------------------------------------------------------Author----------------------------------------------
 
@@ -50,11 +50,6 @@ INSERT INTO BorrowBook (Returned, CreatedAt, ReturnDate, InStorePayment, Deliver
 VALUES (0, GETDATE(), GETDATE() + 10, 1, 1, 1, 2, 2)
 INSERT INTO BorrowBook (Returned, CreatedAt, ReturnDate, InStorePayment, Delivery, BookstoreId, UserId, BookID)
 VALUES (0, GETDATE(), GETDATE() + 10, 1, 1, 1, 2, 3)
-INSERT INTO BorrowBook (Returned, CreatedAt, ReturnDate, InStorePayment, Delivery, BookstoreId, UserId, BookID)
-VALUES (0, GETDATE(), GETDATE() + 10, 1, 1, 1, 2, 4)
-
-INSERT INTO BorrowBook (Returned, CreatedAt, ReturnDate, InStorePayment, Delivery, BookstoreId, UserId, BookID)
-VALUES (0, GETDATE(), GETDATE(), 1, 1, 1, 2, 4)
 
 INSERT INTO BorrowBook (Returned, CreatedAt, ReturnDate, InStorePayment, Delivery, BookstoreId, UserId, BookID)
 VALUES (0, GETDATE() - 10, GETDATE() - 5, 1, 1, 1, 2, 4)

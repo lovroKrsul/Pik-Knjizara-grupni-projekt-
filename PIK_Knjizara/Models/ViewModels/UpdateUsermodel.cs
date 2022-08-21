@@ -28,16 +28,18 @@ namespace PIK_Knjizara.Models.ViewModels
         }
 
         [Required(ErrorMessage = "First name is a must")]
+        [Display (Name = "First name")]
         public string FName { get; set; }
 
         [Required(ErrorMessage = "Last name is a must")]
+        [Display (Name = "Last name")]
         public string LName { get; set; }
 
         [EmailAddress]
         [Required(ErrorMessage = "Email is a must")]
+        [Display (Name = "Email")]
         public string E_mail { get; set; }
 
-        //[Compare("Password", ErrorMessage = "Passwords must match")]
         [DataType(DataType.Password)]
         [Display(Name = "Old password")]
         public string OldPassword { get; set; }
