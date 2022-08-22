@@ -17,11 +17,23 @@ namespace PIK_Knjizara.Controllers
         // GET: Worker
         public ActionResult Index()
         {
+            User user = (User)Session["worker"];
+            if (user == null)
+            {
+                return RedirectToAction("LogIn", "Home");
+            }
+
             return View();
         }
 
         public ActionResult AddWorker()
         {
+            User user = (User)Session["worker"];
+            if (user == null)
+            {
+                return RedirectToAction("LogIn", "Home");
+            }
+
             return View();
         }
 
@@ -52,12 +64,14 @@ namespace PIK_Knjizara.Controllers
         }
         public ActionResult UpdateWorker(int id)
         {
-            if (Session["worker"] == null)
+            User userauth = (User)Session["worker"];
+            if (userauth == null)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("LogIn", "Home");
             }
+            
             User user;
-            if (id != null)
+            if (id != null && id != 0)
             {
                 user = repo.LoadUserId(id);
             }
@@ -99,6 +113,12 @@ namespace PIK_Knjizara.Controllers
 
         public ActionResult Delete(int id)
         {
+            User userauth = (User)Session["worker"];
+            if (userauth == null)
+            {
+                return RedirectToAction("LogIn", "Home");
+            }
+
             IRepo repo = (System.Web.HttpContext.Current.Application["database"] as IRepo);
             User user = repo.LoadUserId(id);
             user.FirstName = Cryptography.HashPassword(user.FirstName);

@@ -42,6 +42,12 @@ namespace PIK_Knjizara.Controllers
 
         public ActionResult GetBook(int id)
         {
+            User user = (User)Session["user"];
+            if (user == null)
+            {
+                return RedirectToAction("LogIn", "Home");
+            }
+
             GetBook getBookVM = new GetBook();
             Book book = repo.LoadBook(id);
             book.Cover = "data:image/jpeg;base64," + book.Cover;
@@ -70,19 +76,23 @@ namespace PIK_Knjizara.Controllers
         private void BorrowBook(GetBook book)
         {
             User user = (User)Session["user"];
-            book.User = repo.LoadUser(user.Email);
             repo.AddBorrow(book);
         }
 
         private void BuyBook(GetBook book)
         {
             User user = (User)Session["user"];
-            book.User = repo.LoadUser(user.Email);
             repo.AddPurchase(book);
         }
 
         public ActionResult AddBook()
         {
+            User user = (User)Session["worker"];
+            if (user == null)
+            {
+                return RedirectToAction("LogIn", "Home");
+            }
+
             ViewBag.authors = repo.LoadAuthors();
             return View();
         }
@@ -109,6 +119,12 @@ namespace PIK_Knjizara.Controllers
 
         public ActionResult UpdateBook(int id)
         {
+            User user = (User)Session["worker"];
+            if (user == null)
+            {
+                return RedirectToAction("LogIn", "Home");
+            }
+
             UpdateBookVM book = new UpdateBookVM(repo.LoadBook(id));
             book.Authors = repo.LoadAuthors();
             return View(book);

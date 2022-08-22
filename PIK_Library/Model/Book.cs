@@ -18,6 +18,8 @@ namespace PIK_Library.Model
         public bool Used { get; set; }
         public int InStock { get; set; }
         public decimal Price { get; set; }
+        
+        [Display (Name = "Borrow price")]
         public decimal BorrowPrice { get; set; }
         public string Cover { get; set; }
         public string Publisher { get; set; }

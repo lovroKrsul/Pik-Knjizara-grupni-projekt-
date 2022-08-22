@@ -8,7 +8,7 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.Book.BorrowPrice, htmlAttributes: new { @class = "w-100" })
-            @Html.DisplayFor(model => model.Book.BorrowPrice) EUR
+            @Html.DisplayFor(model => model.Book.BorrowPrice) EUR per week
         </div>
 
         <div class="form-group mt-3">

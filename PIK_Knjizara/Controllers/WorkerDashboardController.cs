@@ -12,41 +12,85 @@ namespace PIK_Knjizara.Controllers
     {
         IRepo repo = (System.Web.HttpContext.Current.Application["database"] as IRepo);
         // GET: WorkerDashboard
+        
         public ActionResult Index()
         {
+            User user = (User)Session["worker"];
+            if (user == null)
+            {
+                return RedirectToAction("LogIn", "Home");
+            }
+
             return View();
         }
 
         public ActionResult ManageWorkers()
         {
+            User user = (User)Session["worker"];
+            if (user == null)
+            {
+                return RedirectToAction("LogIn", "Home");
+            }
+
             IList<User> users = repo.LoadUsers();
             return View(users.Where(u => u.Workplace != null && u.Workplace != "").ToList());
         }
 
         public ActionResult ManageBooks()
         {
+            User user = (User)Session["worker"];
+            if (user == null)
+            {
+                return RedirectToAction("LogIn", "Home");
+            }
+
             return View(repo.LoadBooks());
         }
 
         public ActionResult Users()
         {
+            User user = (User)Session["worker"];
+            if (user == null)
+            {
+                return RedirectToAction("LogIn", "Home");
+            }
+
             IList<User> persons = repo.LoadUsers();
             return View(persons.Where(u => u.PersonCode != null && u.PersonCode != "").ToList());
         }
 
         public ActionResult Contacts()
         {
+            User user = (User)Session["worker"];
+            if (user == null)
+            {
+                return RedirectToAction("LogIn", "Home");
+            }
+
             return View(repo.LoadContacts());
         }
 
         public ActionResult ContactViewed(int id)
         {
+
+            User user = (User)Session["worker"];
+            if (user == null)
+            {
+                return RedirectToAction("LogIn", "Home");
+            }
+
             repo.ContactViewed(id);
             return RedirectToAction("Contacts");
         }
 
         public ActionResult BookstoreData()
         {
+            User user = (User)Session["worker"];
+            if (user == null)
+            {
+                return RedirectToAction("LogIn", "Home");
+            }
+
             return View(repo.LoadBookstore());
         }
 
@@ -64,11 +108,23 @@ namespace PIK_Knjizara.Controllers
 
         public ActionResult ReturnBooks()
         {
+            User user = (User)Session["worker"];
+            if (user == null)
+            {
+                return RedirectToAction("LogIn", "Home");
+            }
+
             return View(repo.LoadReturns());
         }
 
         public ActionResult ReturnBook(int id)
         {
+            User user = (User)Session["worker"];
+            if (user == null)
+            {
+                return RedirectToAction("LogIn", "Home");
+            }
+
             ReturnBook returnBook = repo.LoadReturn(id);
             if (returnBook.ReturnDate < DateTime.Now)
             {

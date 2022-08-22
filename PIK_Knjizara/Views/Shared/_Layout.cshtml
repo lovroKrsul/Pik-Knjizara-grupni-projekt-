@@ -28,7 +28,7 @@
                     <li class="nav-link">
                         @Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })
                     </li>
-                    @if (Session["user"] == null)
+                    @if (Session["worker"] != null)
                     {
                         <li class="nav-link">
                             @Html.ActionLink("Dashboard", "Index", "WorkerDashboard", null, new { @class = "nav-link" })
@@ -53,15 +53,22 @@
                         <li class="nav-item">
                             @Html.ActionLink("Logout", "Logout", "Home", null, new { @class = "btn btn-outline-warning" })
                         </li>
+                    }else if (Session["worker"] != null)
+                    {
+                        <li class="nav-item">
+                            @Html.ActionLink(Session["worker"].ToString(), "Index", "WorkerDashboard", null, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Logout", "Logout", "Home", null, new { @class = "btn btn-outline-warning" })
+                        </li>
                     }
                     else
                     {
-
                         <li class="nav-item">
                             @Html.ActionLink("Login", "LogIn", "Home", null, new { @class = "nav-link" })
                         </li>
                         <li class="nav-item">
-                            @Html.ActionLink("Register", "Registration", "User", null, new { @class = "nav-link" })
+                                @Html.ActionLink("Please register", "Registration", "User", null, new { @class = "btn btn-lg btn-outline-warning" })
                         </li>
                     }
 

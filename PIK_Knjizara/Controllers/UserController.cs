@@ -22,6 +22,7 @@ namespace PIK_Knjizara.Controllers
             {
                 return RedirectToAction("LogIn", "Home");
             }
+
             IList<ReturnBook> returnBooks = repo.LoadReturns().Where(b => b.UserId == user.IdUser).ToList();
             foreach (ReturnBook book in returnBooks)
             {
@@ -80,11 +81,12 @@ namespace PIK_Knjizara.Controllers
 
         public ActionResult UpdateUser()
         {
-            if (Session["user"] == null)
-            {
-                return RedirectToAction("Index", "Home");
-            }
             User user = (User)Session["user"];
+            if (user == null)
+            {
+                return RedirectToAction("LogIn", "Home");
+            }
+
             UpdateUserModel userid = new UpdateUserModel((System.Web.HttpContext.Current.Application["database"] as IRepo).LoadUser(user.Email));
 
             return View(userid);
@@ -139,7 +141,7 @@ namespace PIK_Knjizara.Controllers
                     user.PersonCode = "K" + DateTime.Now.Year + DateTime.Now.ToString("MM") + DateTime.Now.ToString("dd") + num;
                     user.Password = Cryptography.HashPassword(user.Password);
                     repo.AddUser(user);
-                    Session["user"] = user;
+                    Session["user"] = repo.LoadUser(user.Email);
 
                     return RedirectToAction("Index", "Home");
                 }
@@ -150,6 +152,12 @@ namespace PIK_Knjizara.Controllers
 
         public ActionResult Delete(int id)
         {
+            User userauth = (User)Session["user"];
+            if (userauth == null)
+            {
+                return RedirectToAction("LogIn", "Home");
+            }
+
             IRepo repo = (System.Web.HttpContext.Current.Application["database"] as IRepo);
             User user = repo.LoadUserId(id);
             user.FirstName = Cryptography.HashPassword(user.FirstName);
