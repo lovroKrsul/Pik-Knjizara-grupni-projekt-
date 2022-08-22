@@ -79,6 +79,13 @@
     </div>
     <div class="container body-content">
         @RenderBody()
+
+        @if (ViewBag.UserReturns != null)
+        {
+            <div id="userReturns">
+                @Html.Partial("_UserReturns", (IList<ReturnBook>)ViewBag.UserReturns)
+            </div>
+        }
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - RWA Apartmants</p>

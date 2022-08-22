@@ -26,6 +26,15 @@ namespace PIK_Knjizara.Controllers
                 book.Cover = "data:image/jpeg;base64," + book.Cover;
             }
             ViewBag.MostPopular = mostPopular;
+
+            if (Session["user"] != null)
+            {
+                User user = (User)Session["user"];
+                IList<ReturnBook> userBorrows = repo.LoadReturns().Where(b => b.UserId == user.IdUser).ToList();
+                ViewBag.UserReturns = userBorrows;
+            }
+
+
             return View(books);
         }
 

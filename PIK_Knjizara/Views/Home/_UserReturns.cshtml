@@ -1,0 +1,21 @@
+﻿@model IEnumerable<PIK_Library.Model.ReturnBook>
+
+<div class="border border-dark">
+    <table class="table">
+        <tr>
+            <th>
+                Borrowed books
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Book.Title)
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

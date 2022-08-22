@@ -32,3 +32,17 @@ textarea {
     height: 250px;
     width: 175px;
 }
+
+#userReturns {
+    position: absolute;
+    right: 0;
+    margin: .5rem;
+    top: 75px;
+}
+
+@media screen and (max-width: 992px) {
+
+    #userReturns {
+        top: 60px;
+    }
+}
