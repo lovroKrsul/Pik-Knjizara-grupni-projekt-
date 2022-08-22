@@ -33,7 +33,9 @@ namespace PIK_Library.Dal
 
         //---------------------Book------------------------------------
         IList<Book> LoadBooks();
+        IList<Book> LoadMostPopularBooks();
         Book LoadBook(int id);
+        Book LoadBookByTitle(string title);
         Book LoadBookUsed(string title);
         void AddBook(Book book);
         void UpdateBook(Book book);

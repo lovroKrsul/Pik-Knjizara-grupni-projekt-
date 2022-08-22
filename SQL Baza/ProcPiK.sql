@@ -1,3 +1,6 @@
+
+
+
 ---------------------------------------------------------Procedures----------------------------------------------
 
 USE PraKnjizara
@@ -224,6 +227,17 @@ BEGIN
 END
 GO
 
+CREATE OR ALTER PROC LoadMostPopularBooks
+AS
+BEGIN 
+	SELECT TOP 4 B.Title
+	FROM Purchase AS P
+	INNER JOIN Book AS B ON P.BookID = B.IDBook
+	GROUP BY B.Title
+	ORDER BY COUNT(*) DESC
+END
+GO
+
 CREATE OR ALTER PROC LoadBook
 	@BookId INT
 AS
@@ -231,6 +245,16 @@ BEGIN
 	SELECT *
 	FROM Book
 	WHERE IDBook = @BookId AND DeletedAt IS NULL
+END
+GO
+
+CREATE OR ALTER PROC LoadBookByTitle
+	@Title NVARCHAR(250)
+AS
+BEGIN 
+	SELECT *
+	FROM Book
+	WHERE Title = @Title AND Used = 0 AND DeletedAt IS NULL
 END
 GO
 

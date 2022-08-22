@@ -17,8 +17,15 @@ namespace PIK_Knjizara.Controllers
             IList<Book> books = repo.LoadBooks();
             foreach (Book book in books)
             {
+                book.Cover = "data:image/jpeg;base64," + book.Cover; 
+            }
+
+            IList<Book> mostPopular = repo.LoadMostPopularBooks();
+            foreach (Book book in mostPopular)
+            {
                 book.Cover = "data:image/jpeg;base64," + book.Cover;
             }
+            ViewBag.MostPopular = mostPopular;
             return View(books);
         }
 
