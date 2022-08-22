@@ -38,6 +38,12 @@ namespace PIK_Knjizara.Controllers
         [HttpGet]
         public ActionResult LogIn()
         {
+            User user = (User)Session["worker"];
+            if (user != null)
+            {
+                return RedirectToAction("Index", "WorkerDashboard");
+            }
+
             return View();
         }
 
