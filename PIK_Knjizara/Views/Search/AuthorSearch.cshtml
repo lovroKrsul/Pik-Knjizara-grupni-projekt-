@@ -7,7 +7,8 @@
 <h2>AuthorSearch</h2>
 
 @Html.Label(expression: "author", labelText: "Author:")
-@Html.TextBox(name: "author", htmlAttributes: new { @class = "form-control" }, value: null)
+@Html.TextBox(name: "author", value: null)
+@Html.ActionLink("Book search", "BookSearch", "Search", htmlAttributes: new { @class = "btn btn-outline-dark" })
 
 <h2>Authors</h2>
 

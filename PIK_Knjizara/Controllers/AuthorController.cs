@@ -111,7 +111,7 @@ namespace PIK_Knjizara.Controllers
         public ActionResult LoadBooks(int id)
         {
             IList<Book> Books = new List<Book>();
-            Books = (IList<Book>)repo.LoadBooks().Where(Book => Book.IdBook == id);
+            Books = (IList<Book>)repo.LoadBooks().Where(Book => Book.IdBook == id).ToList();
             return PartialView("_AuthorBooks", model: Books);
         }
 
