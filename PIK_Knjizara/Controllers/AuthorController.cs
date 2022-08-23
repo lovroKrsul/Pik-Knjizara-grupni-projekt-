@@ -116,6 +116,18 @@ namespace PIK_Knjizara.Controllers
             return PartialView("_AuthorBooks", model: Books);
         }
 
+  public ActionResult GetAutocompleteAuthors(string term)
+        {
+            IList<Author> auth = repo.LoadAuthors();
+
+            var find = auth.Where(a => a.ToString().ToLower().Contains(term.ToLower())).Select(a => new
+            {
+                label = a.ToString(),
+                value = a.ID.ToString(),
+            });
+
+            return Json(find, JsonRequestBehavior.AllowGet);
+        }
     }
 
 }
