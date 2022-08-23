@@ -106,7 +106,7 @@ namespace PIK_Knjizara.Controllers
         
         public ActionResult AuthorDetails(int id)
         {
-            return View("AuthorDetails", model: repo.LoadAuthor(id));
+            return View("AuthorDetails", model: repo.LoadAuthorByID(id));
         }
 
         public ActionResult LoadBooks(int id)
