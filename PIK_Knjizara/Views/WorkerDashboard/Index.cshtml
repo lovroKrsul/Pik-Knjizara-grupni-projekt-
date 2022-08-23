@@ -19,7 +19,10 @@
         @Html.ActionLink("Manage books", "ManageBooks", "WorkerDashboard", null, new { @class = "btn btn-outline-dark" })
     </div>
     <div>
-        @Html.ActionLink("Add author", "AddAuthor", "Author", null, new { @class = "btn btn-outline-dark" })
+        @Html.ActionLink("Add author", "Create", "Author", null, new { @class = "btn btn-outline-dark" })
+    </div>
+    <div>
+        @Html.ActionLink("Manage authors", "Index", "Author", null, new { @class = "btn btn-outline-dark" })
     </div>
     <div>
         @Html.ActionLink("Return book", "ReturnBooks", "WorkerDashboard", null, new { @class = "btn btn-outline-dark" })

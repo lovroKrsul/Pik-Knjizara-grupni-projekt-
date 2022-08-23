@@ -258,6 +258,16 @@ namespace PIK_Library.DAL
             return authors;
         }
 
+        public Author LoadAuthor(int id)
+        {
+            return new Author
+            {
+                ID = "5",
+                FirstName = "pero",
+                LastName = "peric"
+            };
+        }
+
         public int UpdateAuthorByName(Author a)
         {
             int i = 0;
@@ -274,16 +284,6 @@ namespace PIK_Library.DAL
                 return -1;
             }
             return i;
-        }
-
-        public Author LoadAuthor(int id)
-        {
-            return new Author
-            {
-                ID = "1",
-                FirstName = "pero",
-                LastName = "peric"
-            };
         }
 
         public Author LoadAuthorByName(string name)

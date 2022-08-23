@@ -108,10 +108,11 @@ namespace PIK_Knjizara.Controllers
         {
             return View("AuthorDetails", model: repo.LoadAuthor(id));
         }
+
         public ActionResult LoadBooks(int id)
         {
             IList<Book> Books = new List<Book>();
-            Books = (IList<Book>)repo.LoadBooks().Where(Book => Book.IdBook == id).ToList();
+            Books = (IList<Book>)repo.LoadBooks().Where(Book => Book.AuthorId == id).ToList();
             return PartialView("_AuthorBooks", model: Books);
         }
 
