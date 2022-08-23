@@ -3,37 +3,72 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Bookstore management</h2>
 
-<div>
-    <div>
-        @Html.ActionLink("Add worker", "AddWorker", "Worker", null, new { @class = "btn btn-outline-dark" })
+<div class="d-flex flex-wrap">
+    <div class="card m-2" style="width: 12rem;">
+        <div class="card-body">
+            <h5 class="card-title">Workers</h5>
+        </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    @Html.ActionLink("Add worker", "AddWorker", "Worker", null, new { @class = "btn btn-outline-dark" })
+                </li>
+                <li class="list-group-item">
+                    @Html.ActionLink("Manage workers", "ManageWorkers", "WorkerDashboard", null, new { @class = "btn btn-outline-dark" })
+                </li>
+            </ul>
     </div>
-    <div>
-        @Html.ActionLink("Manage workers", "ManageWorkers", "WorkerDashboard", null, new { @class = "btn btn-outline-dark" })
+    <div class="card m-2" style="width: 12rem;">
+        <div class="card-body">
+            <h5 class="card-title">Books</h5>
+        </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    @Html.ActionLink("Add book", "AddBook", "Book", null, new { @class = "btn btn-outline-dark" })
+                </li>
+                <li class="list-group-item">
+                    @Html.ActionLink("Manage books", "ManageBooks", "WorkerDashboard", null, new { @class = "btn btn-outline-dark" })
+                </li>
+                <li class="list-group-item">
+                    @Html.ActionLink("Return book", "ReturnBooks", "WorkerDashboard", null, new { @class = "btn btn-outline-dark" })
+                </li>
+            </ul>
     </div>
-    <div>
-        @Html.ActionLink("Add book", "AddBook", "Book", null, new { @class = "btn btn-outline-dark" })
+    <div class="card m-2" style="width: 12rem;">
+        <div class="card-body">
+            <h5 class="card-title">Authors</h5>
+        </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    @Html.ActionLink("Add author", "Create", "Author", null, new { @class = "btn btn-outline-dark" })
+                </li>
+                <li class="list-group-item">
+                    @Html.ActionLink("Manage authors", "Index", "Author", null, new { @class = "btn btn-outline-dark" })
+                </li>
+            </ul>
     </div>
-    <div>
-        @Html.ActionLink("Manage books", "ManageBooks", "WorkerDashboard", null, new { @class = "btn btn-outline-dark" })
+    <div class="card m-2" style="width: 12rem;">
+        <div class="card-body">
+            <h5 class="card-title">Users</h5>
+        </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    @Html.ActionLink("Users", "Users", "WorkerDashboard", null, new { @class = "btn btn-outline-dark" })
+                </li>
+                <li class="list-group-item">
+                    @Html.ActionLink("Messages", "Contacts", "WorkerDashboard", null, new { @class = "btn btn-outline-dark" })
+                </li>
+            </ul>
     </div>
-    <div>
-        @Html.ActionLink("Add author", "Create", "Author", null, new { @class = "btn btn-outline-dark" })
-    </div>
-    <div>
-        @Html.ActionLink("Manage authors", "Index", "Author", null, new { @class = "btn btn-outline-dark" })
-    </div>
-    <div>
-        @Html.ActionLink("Return book", "ReturnBooks", "WorkerDashboard", null, new { @class = "btn btn-outline-dark" })
-    </div>
-    <div>
-        @Html.ActionLink("Users", "Users", "WorkerDashboard", null, new { @class = "btn btn-outline-dark" })
-    </div>
-    <div>
-        @Html.ActionLink("Messages", "Contacts", "WorkerDashboard", null, new { @class = "btn btn-outline-dark" })
-    </div>
-    <div>
-        @Html.ActionLink("Bookstore data", "BookstoreData", "WorkerDashboard", null, new { @class = "btn btn-outline-dark" })
+    <div class="card m-2" style="width: 12rem;">
+        <div class="card-body">
+            <h5 class="card-title">Bookstore</h5>
+        </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    @Html.ActionLink("Bookstore data", "BookstoreData", "WorkerDashboard", null, new { @class = "btn btn-outline-dark" })
+                </li>
+            </ul>
     </div>
 </div>
