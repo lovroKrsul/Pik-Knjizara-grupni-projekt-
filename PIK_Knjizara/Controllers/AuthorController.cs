@@ -123,7 +123,7 @@ namespace PIK_Knjizara.Controllers
             var find = auth.Where(a => a.ToString().ToLower().Contains(term.ToLower())).Select(a => new
             {
                 label = a.ToString(),
-                value = a.ID.ToString(),
+                value = a.ID,
             });
 
             return Json(find, JsonRequestBehavior.AllowGet);

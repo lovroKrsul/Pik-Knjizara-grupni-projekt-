@@ -17,8 +17,7 @@
 
 @section scripts{
     <script>
-
-        $("#auhtor").autocomplete({
+        $("#author").autocomplete({
                 source: '@Url.Action(actionName: "GetAutocompleteAuthors", controllerName:"Author")',
                 select: function (e, ui) {
                     e.preventDefault();
@@ -27,7 +26,7 @@
                         id: ui.item.value
                     };
                     $(this).val(author.name);
-                    showAuhtor(author.id);
+                    showAuthor(author.id);
                 },
                 focus: function (e, ui) {
                     e.preventDefault();
@@ -37,7 +36,7 @@
         );
 
         function showAuthor(id) {
-            window.location.href = '@Url.Action("AuthorDetails", "Auhtor")/' + id;
+            window.location.href = '@Url.Action("AuthorDetails", "Author")?id=' + id;
         }
 
     </script>
