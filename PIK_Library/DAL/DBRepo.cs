@@ -234,7 +234,25 @@ namespace PIK_Library.DAL
             }
             return i;
         }
+ public Author LoadAuthorByID(int id)
+        {
+            IList<Author> a = new List<Author>();
+            var tblauthor = SqlHelper.ExecuteDataset(CS, "LoadAuthor",
+               new System.Data.SqlClient.SqlParameter("@ID", id)).Tables[0];
+            foreach (DataRow dr in tblauthor.Rows)
+            {
+                a.Add(new Author
+                {
+                    ID = dr["IDAuthor"].ToString(),
+                    FirstName = dr[nameof(Author.FirstName)].ToString(),
+                    LastName = dr[nameof(Author.LastName)].ToString(),
+                    Description = dr[nameof(Author.Description)].ToString(),
+                    Biography = dr[nameof(Author.Biography)].ToString(),
 
+                });
+            }
+            return a.FirstOrDefault();
+        }
      public IList<Author> LoadAuthors()
         {
             IList<Author> authors = new List<Author>();
