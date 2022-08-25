@@ -22,6 +22,7 @@ namespace PIK_Knjizara.Controllers
             book.Cover = "data:image/jpeg;base64," + book.Cover;
             books.NewBook = book;
             book = (System.Web.HttpContext.Current.Application["database"] as IRepo).LoadBookUsed(book.Title);
+            
             book.Cover = "data:image/jpeg;base64," + book.Cover;
             books.OldBook = book;
             return View(books);

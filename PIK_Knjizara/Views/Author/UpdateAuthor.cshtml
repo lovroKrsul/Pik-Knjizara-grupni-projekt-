@@ -5,11 +5,18 @@
 }
 
 <h2>Promjeni podatke autora</h2>
-
+@{  
+    List<string> authors = new List<string>();
+    foreach (PIK_Library.Model.Author a in ViewBag.authors)
+    {
+        authors.Add(a.ID + ":" + a.FirstName + " " + a.LastName);
+    }
+}
 @using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken()
+    @Html.AntiForgeryToken();
 
+    @Html.DropDownList("Author:", new SelectList(authors))
     <div class="form-horizontal">
 
         <hr />

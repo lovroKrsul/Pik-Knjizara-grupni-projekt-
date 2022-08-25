@@ -17,6 +17,13 @@ namespace PIK_Knjizara.Controllers
         // GET: Author
         public ActionResult Index()
         {
+           User user = (User)Session["worker"];
+            if (user == null)
+            {
+                return RedirectToAction("LogIn", "Home");
+            }
+            IList<Author> authors=repo.LoadAuthors();
+            
             return View();
         }
 
@@ -29,6 +36,12 @@ namespace PIK_Knjizara.Controllers
         // GET: Author/Create
         public ActionResult Create()
         {
+            User user = (User)Session["worker"];
+            if (user == null)
+            {
+                return RedirectToAction("LogIn", "Home");
+            }
+         
             return View("AddAuthor");
         }
 
@@ -36,6 +49,12 @@ namespace PIK_Knjizara.Controllers
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
+            User user = (User)Session["worker"];
+            if (user == null)
+            {
+                return RedirectToAction("LogIn", "Home");
+            }
+
             try
             {
 
@@ -51,8 +70,15 @@ namespace PIK_Knjizara.Controllers
         }
         public ActionResult Edit()
         {
+            User user = (User)Session["worker"];
+            if (user == null)
+            {
+                return RedirectToAction("LogIn", "Home");
+            }
+             
+            ViewBag.authors = repo.LoadAuthors();
             return View("UpdateAuthor");
-
+           
         }
 
 
@@ -63,15 +89,25 @@ namespace PIK_Knjizara.Controllers
         [HttpPost]
         public ActionResult Edit(FormCollection collection)
         {
-
-
+            User user = (User)Session["worker"];
+            if (user == null)
+            {
+                return RedirectToAction("LogIn", "Home");
+            }
+            
+            var x = collection["Author:"];
+            string ID = x.Split(':').First();
+            ViewBag.authors = repo.LoadAuthors();
             try
             {
-                int i = repo.UpdateAuthorByName(new Author { FirstName = collection["FirstName"], LastName = collection["LastName"], Description = collection["Description"], Biography = collection["Biography"] });
+                Author a=repo.LoadAuthorByID(int.Parse(ID));
+                int i = repo.UpdateAuthorByID(new Author {ID=a.ID,FirstName = collection["FirstName"], LastName = collection["LastName"], Description = collection["Description"], Biography = collection["Biography"] });
+                // int i = repo.UpdateAuthorByName(new Author { FirstName = collection["FirstName"], LastName = collection["LastName"], Description = collection["Description"], Biography = collection["Biography"] });
                 if (i > 0)
                 {
                     return RedirectToAction("Index");
                 }
+                
                 return View("UpdateAuthor");
             }
             catch
@@ -83,6 +119,12 @@ namespace PIK_Knjizara.Controllers
         // GET: Author/Delete/5
         public ActionResult Delete()
         {
+            User user = (User)Session["worker"];
+            if (user == null)
+            {
+                return RedirectToAction("LogIn", "Home");
+            }
+             
             ViewBag.authors = repo.LoadAuthors();
             return View("DeleteAuthor");
         }
@@ -91,6 +133,12 @@ namespace PIK_Knjizara.Controllers
         [HttpPost]
         public ActionResult Delete(FormCollection collection)
         {
+            User user = (User)Session["worker"];
+            if (user == null)
+            {
+                return RedirectToAction("LogIn", "Home");
+            }
+             
             string author = Request.Form["Author:"].ToString(); ;
             try
             {
@@ -103,7 +151,19 @@ namespace PIK_Knjizara.Controllers
                 return View("DeleteAuthor");
             }
         }
-        
+        public ActionResult GetAutocompleteAuthors(string term)
+        {
+            IList<Author> auth = repo.LoadAuthors();
+
+            var find = auth.Where(a => a.ToString().ToLower().Contains(term.ToLower())).Select(a => new
+            {
+                label = a.ToString(),
+                value = a.ID.ToString(),
+            });
+
+            return Json(find, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult AuthorDetails(int id)
         {
             return View("AuthorDetails", model: repo.LoadAuthor(id));
@@ -117,5 +177,5 @@ namespace PIK_Knjizara.Controllers
         }
 
     }
-
+   
 }

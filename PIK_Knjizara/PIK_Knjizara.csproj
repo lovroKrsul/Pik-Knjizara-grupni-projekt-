@@ -274,7 +274,6 @@
     <Content Include="Views\User\ConfirmPasswordReset.cshtml" />
     <Content Include="Views\Author\AddAuthor.cshtml" />
     <Content Include="Views\Author\DeleteAuthor.cshtml" />
-    <Content Include="Views\Author\Index.cshtml" />
     <Content Include="Views\Author\UpdateAuthor.cshtml" />
     <Content Include="Views\Shared\_GetBooks.cshtml" />
     <Content Include="Views\Book\_NewBook.cshtml" />
@@ -305,6 +304,7 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\_BorrowedBooksUser.cshtml" />
     <Content Include="Views\Home\_UserReturns.cshtml" />
+    <Content Include="Views\Author\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

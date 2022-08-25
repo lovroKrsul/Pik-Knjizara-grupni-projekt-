@@ -1,11 +1,11 @@
-﻿@model PIK_Library.Model.Author
-
+﻿
 @{
-    ViewBag.Title = "View";
+    ViewBag.Title = "Index";
 }
 
-<h2>Ovo ce bit promjenjeno u detalje o autoru i lista knjiga</h2>
+<h2>Index</h2>
 
-@Html.ActionLink("Add", "Create", "Author", new { @class = "btn btn-outline-dark" })
-@Html.ActionLink("Edit", "Edit", "Author", new { @class = "btn btn-outline-dark" })
-@Html.ActionLink("Delete", "Delete", "Author", new { @class = "btn btn-outline-dark" })
+@Html.ActionLink("Dodaj autora", "Create")
+@Html.ActionLink("Promjeni autora", "Edit")
+@Html.ActionLink("Izbriši autora", "Delete")
+

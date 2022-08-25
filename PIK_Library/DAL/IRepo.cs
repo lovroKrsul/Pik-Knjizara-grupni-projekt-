@@ -30,6 +30,7 @@ namespace PIK_Library.Dal
         Author LoadAuthorByID(int id);
         Author LoadAuthorByName(string name);
         int UpdateAuthorByName(Author a);
+        int UpdateAuthorByID(Author a);
         int DeleteAuthorByName(string name);
 
         //---------------------Book------------------------------------
