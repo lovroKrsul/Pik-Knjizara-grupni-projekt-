@@ -316,6 +316,10 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Checkout-NET-SDK-develop\PayPalCheckoutSdk\PayPalCheckoutSdk.csproj">
+      <Project>{ab9bd30a-f3c7-4554-ae03-3af62df6a75c}</Project>
+      <Name>PayPalCheckoutSdk</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PIK_Library\PIK_Library.csproj">
       <Project>{0B7D2176-4E1E-4D94-BF48-66E6513D7E57}</Project>
       <Name>PIK_Library</Name>
