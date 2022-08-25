@@ -293,6 +293,25 @@ namespace PIK_Library.DAL
             }
             return i;
         }
+        public int UpdateAuthorByID(Author a)
+        {
+            
+            int i = 0;
+            try
+            {
+                i = SqlHelper.ExecuteNonQuery(CS, CommandType.StoredProcedure, nameof(UpdateAuthorByID),
+                  new System.Data.SqlClient.SqlParameter("@ID", a.ID),
+                  new System.Data.SqlClient.SqlParameter("@FirstName", a.FirstName),
+                  new System.Data.SqlClient.SqlParameter("@LastName", a.LastName),
+                  new System.Data.SqlClient.SqlParameter("@Description", a.Description),
+                  new System.Data.SqlClient.SqlParameter("@Biography", a.Biography));
+            }
+            catch
+            {
+                return -1;
+            }
+            return i;
+        }
 
         public Author LoadAuthorByName(string name)
         {
