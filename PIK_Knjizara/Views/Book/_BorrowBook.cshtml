@@ -13,7 +13,14 @@
 
         <div class="form-group mt-3">
             @Html.LabelFor(model => model.Book.Used, htmlAttributes: new { @class = "control-label col-md-2" })
-            <input type="checkbox" class="form-check-input" id="BookUsed" onkeyup="sum();" name="BookUsed" value="@Model.Book.Used" disabled />
+            @if (Model.Book.Used)
+            {
+                <input type="checkbox" class="form-check-input" checked disabled />
+            }
+            else
+            {
+                <input type="checkbox" class="form-check-input" disabled />
+            }
         </div>
 
         <div class="form-group mt-3">

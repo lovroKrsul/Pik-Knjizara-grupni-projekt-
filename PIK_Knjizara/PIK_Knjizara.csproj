@@ -305,6 +305,8 @@
     <Content Include="Views\User\_BorrowedBooksUser.cshtml" />
     <Content Include="Views\Home\_UserReturns.cshtml" />
     <Content Include="Views\Author\Index.cshtml" />
+    <Content Include="Views\Book\Bought.cshtml" />
+    <Content Include="Views\Book\Borrowed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

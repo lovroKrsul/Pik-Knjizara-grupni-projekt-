@@ -22,7 +22,6 @@ namespace PIK_Knjizara.Controllers
             book.Cover = "data:image/jpeg;base64," + book.Cover;
             books.NewBook = book;
             book = (System.Web.HttpContext.Current.Application["database"] as IRepo).LoadBookUsed(book.Title);
-            
             book.Cover = "data:image/jpeg;base64," + book.Cover;
             books.OldBook = book;
             return View(books);
@@ -62,16 +61,29 @@ namespace PIK_Knjizara.Controllers
         {
             if (ModelState.IsValid)
             {
+                book.Book = repo.LoadBook(book.Book.IdBook);
                 if (book.Buy)
                 {
                     BuyBook(book);
+                    return RedirectToAction("Bought", book);
                 }
                 else
                 {
                     BorrowBook(book);
+                    return RedirectToAction("Borrowed", book);
                 }
             }
             return View();
+        }
+        
+        public ActionResult Bought(GetBook book)
+        {
+            return View(book);
+        }
+
+        public ActionResult Borrowed(GetBook book)
+        {
+            return View(book);
         }
 
         private void BorrowBook(GetBook book)
