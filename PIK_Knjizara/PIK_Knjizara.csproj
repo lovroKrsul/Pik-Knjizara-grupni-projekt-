@@ -294,10 +294,7 @@
     <Content Include="Views\Search\BookSearch.cshtml" />
     <Content Include="Views\Search\AuthorSearch.cshtml" />
     <Content Include="Views\Shared\_GetAuthors.cshtml" />
-    <Content Include="Views\Book\GetBook.cshtml" />
-    <Content Include="Views\Book\_BuyBook.cshtml" />
     <Content Include="Views\Book\_Book.cshtml" />
-    <Content Include="Views\Book\_BorrowBook.cshtml" />
     <Content Include="Views\Book\UpdateBook.cshtml" />
     <Content Include="Views\WorkerDashboard\ReturnBooks.cshtml" />
     <Content Include="Views\WorkerDashboard\ReturnBook.cshtml" />
@@ -307,6 +304,8 @@
     <Content Include="Views\Author\Index.cshtml" />
     <Content Include="Views\Book\Bought.cshtml" />
     <Content Include="Views\Book\Borrowed.cshtml" />
+    <Content Include="Views\Book\BuyBook.cshtml" />
+    <Content Include="Views\Book\BorrowBook.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
