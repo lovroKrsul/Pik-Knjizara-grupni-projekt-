@@ -1,19 +1,18 @@
 ﻿@model PIK_Library.Model.GetBook
 
+    <h3>Kupili ste:</h3>
 <div class="d-flex flex-wrap">
     <div>
-        <h3>You have buyed:</h3>
         @Html.Partial("_Book", Model.Book)
     </div>
-    <div>
+    <div class="m-4">
         <dl class="dl-horizontal">
-
             <dt>
                 Price:
             </dt>
 
             <dd>
-                @Model.Book.Price
+                @Model.Book.Price EUR
             </dd>
 
             <dt>

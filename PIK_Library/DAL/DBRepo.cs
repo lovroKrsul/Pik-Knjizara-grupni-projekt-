@@ -565,7 +565,7 @@ namespace PIK_Library.DAL
             if (tblId.Rows.Count == 0) return 0;
 
             DataRow row = tblId.Rows[0];
-            return (int)row[nameof(GetBook.IdBorrow)];
+            return int.Parse(row[nameof(GetBook.IdBorrow)].ToString());
         }
 
 
@@ -581,7 +581,7 @@ namespace PIK_Library.DAL
         {
             SqlHelper.ExecuteNonQuery(
                 CS,
-                nameof(PayPurchase),
+                nameof(PayBorrow),
                 id);
         }
 

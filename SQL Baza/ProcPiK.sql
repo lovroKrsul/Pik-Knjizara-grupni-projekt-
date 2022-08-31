@@ -355,8 +355,8 @@ BEGIN
 	UPDATE Book
 	SET InStock = InStock - 1
 	WHERE IDBook = @BookId
-	INSERT INTO BorrowBook (CreatedAt, ReturnDate, InStorePayment, Payed, Delivery, BookstoreId, UserId, BookId)
-	VALUES (GETDATE(), @ReturnDate, @InStorePayment, @Payed, @Delivery, 1, @UserId, @BookId)
+	INSERT INTO BorrowBook (CreatedAt, ReturnDate, Returned , InStorePayment, Payed, Delivery, BookstoreId, UserId, BookId)
+	VALUES (GETDATE(), @ReturnDate, 0, @InStorePayment, @Payed, @Delivery, 1, @UserId, @BookId)
 	SELECT SCOPE_IDENTITY() AS IdBorrow
 END
 GO

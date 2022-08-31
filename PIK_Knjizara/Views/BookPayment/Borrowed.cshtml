@@ -1,12 +1,20 @@
 ﻿@model PIK_Library.Model.GetBook
 
+<h3>Posudili ste:</h3>
 <div class="d-flex flex-wrap">
     <div>
-        <h3>You have borrowed:</h3>
         @Html.Partial("_Book", Model.Book)
     </div>
-    <div>
+    <div class="m-4">
         <dl class="dl-horizontal">
+            <dt>
+                Price per week:
+            </dt>
+
+            <dd>
+                @Model.Book.Price EUR per week
+            </dd>
+
             <dt>
                 Payment:
             </dt>

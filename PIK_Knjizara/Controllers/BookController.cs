@@ -80,7 +80,7 @@ namespace PIK_Knjizara.Controllers
                 book.User = (User)Session["user"];
                 book.Payed = false;
                 int id = repo.AddPurchase(book);
-                return RedirectToAction("Bought", "BookPayment", id);
+                return RedirectToAction("Bought", "BookPayment", new { Id = id });
             }
             return RedirectToAction("BuyBook", book.BookId);
         }
@@ -94,7 +94,7 @@ namespace PIK_Knjizara.Controllers
                 book.User = (User)Session["user"];
                 book.Payed = false;
                 int id = repo.AddBorrow(book);
-                return RedirectToAction("Borrowed", "BookPayment", id);
+                return RedirectToAction("Borrowed", "BookPayment", new { Id = id });
             }
             return RedirectToAction("BorrowBook", book.BookId);
         }
