@@ -1,0 +1,36 @@
+﻿@model PIK_Library.Model.GetBook
+
+@{
+    ViewBag.Title = "Payment";
+}
+
+<h2>Payment</h2>
+
+<div class="d-flex flex-row">
+    <div class="w-50">
+        @Html.Partial("_Book", Model.Book)
+    </div>
+    <div class="m-2">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Book.Price)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Book.Price) EUR
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Delivery)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Delivery)
+            </dd>
+        </dl>
+        <div>
+            @Html.ActionLink("Pay", "PayBuy", "BookPayment", new { Id = Model.IdPurchase }, new { @class = "btn btn-outline-success" })
+            @Html.ActionLink("Cancel", "Index", "Home", null, new { @class = "btn btn-danger" })
+        </div>
+    </div>
+</div>

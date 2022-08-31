@@ -11,8 +11,12 @@
 {
     @Html.AntiForgeryToken()
 
+
+
     <div class="form-horizontal">
         <hr />
+        <h5 class="text-danger">@ViewBag.NoUser</h5>
+        
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })

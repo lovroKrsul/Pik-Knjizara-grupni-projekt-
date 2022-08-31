@@ -9,11 +9,14 @@ namespace PIK_Library.Model
 {
     public class GetBook
     {
-        public int IdGet { get; set; }
-        public int IdBook { get; set; }
+        public int IdPurchase { get; set; }
+        public int IdBorrow { get; set; }
+        public int BookId { get; set; }
+        public int UserId { get; set; }
         public Book Book { get; set; }
         [Display(Name = " ")]
         public bool InStorePayment { get; set; }
+        public bool Payed { get; set; }
         public bool Delivery { get; set; }
         [Display(Name = "Return Date")]
         public User User { get; set; }

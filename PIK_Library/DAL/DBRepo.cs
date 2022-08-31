@@ -531,27 +531,93 @@ namespace PIK_Library.DAL
 
         //-------------------------------------------------------------------------------- PurchaseBook --------------------------------------------------------------------------------
         
-        public void AddPurchase(GetBook book)
+        public int AddPurchase(GetBook book)
         {
-            SqlHelper.ExecuteNonQuery(
+            var tblId = SqlHelper.ExecuteDataset(
                 CS,
                 nameof(AddPurchase),
                 book.InStorePayment,
+                book.Payed,
                 book.Delivery,
                 book.User.IdUser,
-                book.Book.IdBook);
+                book.Book.IdBook).Tables[0];
+
+
+            if (tblId.Rows.Count == 0) return 0;
+
+            DataRow row = tblId.Rows[0];
+            return int.Parse(row[nameof(GetBook.IdPurchase)].ToString());
         }
 
-        public void AddBorrow(GetBook book)
+        public int AddBorrow(GetBook book)
+        {
+            var tblId = SqlHelper.ExecuteDataset(
+                CS,
+                nameof(AddBorrow),
+                book.ReturnDate,
+                book.InStorePayment,
+                book.Payed,
+                book.Delivery,
+                book.User.IdUser,
+                book.Book.IdBook).Tables[0];
+
+
+            if (tblId.Rows.Count == 0) return 0;
+
+            DataRow row = tblId.Rows[0];
+            return (int)row[nameof(GetBook.IdBorrow)];
+        }
+
+
+        public void PayPurchase(int id)
         {
             SqlHelper.ExecuteNonQuery(
                 CS,
-                nameof(AddPurchase),
-                book.ReturnDate,
-                book.InStorePayment,
-                book.Delivery,
-                book.User.IdUser,
-                book.Book.IdBook);
+                nameof(PayPurchase),
+                id);
+        }
+
+        public void PayBorrow(int id)
+        {
+            SqlHelper.ExecuteNonQuery(
+                CS,
+                nameof(PayPurchase),
+                id);
+        }
+
+        public GetBook LoadPurchase(int id)
+        {
+            var tblBook = SqlHelper.ExecuteDataset(CS, nameof(LoadPurchase), id).Tables[0];
+
+            if (tblBook.Rows.Count == 0) return null;
+
+            DataRow row = tblBook.Rows[0];
+            return new GetBook
+            {
+                IdPurchase = (int)row[nameof(GetBook.IdPurchase)],
+                Book = LoadBook((int)row[nameof(GetBook.BookId)]),
+                InStorePayment = (bool)row[nameof(GetBook.InStorePayment)],
+                Payed = (bool)row[nameof(GetBook.Payed)],
+                Delivery = (bool)row[nameof(GetBook.Delivery)]
+            };
+        }
+
+        public GetBook LoadBorrow(int id)
+        {
+            var tblBook = SqlHelper.ExecuteDataset(CS, nameof(LoadBorrow), id).Tables[0];
+
+            if (tblBook.Rows.Count == 0) return null;
+
+            DataRow row = tblBook.Rows[0];
+            return new GetBook
+            {
+                IdBorrow = (int)row[nameof(GetBook.IdBorrow)],
+                Book = LoadBook((int)row[nameof(GetBook.BookId)]),
+                InStorePayment = (bool)row[nameof(GetBook.InStorePayment)],
+                Payed = (bool)row[nameof(GetBook.Payed)],
+                Delivery = (bool)row[nameof(GetBook.Delivery)],
+                ReturnDate = DateTime.Parse(row[nameof(GetBook.ReturnDate)].ToString())
+            };
         }
 
         //-------------------------------------------------------------------------------- Return Book --------------------------------------------------------------------------------

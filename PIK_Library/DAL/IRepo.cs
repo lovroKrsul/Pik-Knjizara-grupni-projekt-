@@ -43,8 +43,12 @@ namespace PIK_Library.Dal
         void DeleteBook(Book book);
 
         //---------------------GetBook------------------------------------
-        void AddPurchase(GetBook book);
-        void AddBorrow(GetBook book);
+        int AddPurchase(GetBook book);
+        int AddBorrow(GetBook book);
+        void PayPurchase(int id);
+        void PayBorrow(int id);
+        GetBook LoadPurchase(int id);
+        GetBook LoadBorrow(int id);
 
         //---------------------ReturnBook------------------------------------
         IList<ReturnBook> LoadReturns();

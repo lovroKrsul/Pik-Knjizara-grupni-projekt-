@@ -67,7 +67,7 @@ namespace PIK_Knjizara.Controllers
             book.Cover = "data:image/jpeg;base64," + book.Cover;
             getBookVM.Book = book;
             getBookVM.ReturnDate = DateTime.Now.AddDays(1);
-            getBookVM.IdBook = id;
+            getBookVM.BookId = id;
             return getBookVM;
         }
 
@@ -76,12 +76,13 @@ namespace PIK_Knjizara.Controllers
         {
             if (ModelState.IsValid)
             {
-                book.Book = repo.LoadBook(book.IdBook);
+                book.Book = repo.LoadBook(book.BookId);
                 book.User = (User)Session["user"];
-                repo.AddPurchase(book);
-                return RedirectToAction("Bought", book);
+                book.Payed = false;
+                int id = repo.AddPurchase(book);
+                return RedirectToAction("Bought", "BookPayment", id);
             }
-            return RedirectToAction("BuyBook", book.IdBook);
+            return RedirectToAction("BuyBook", book.BookId);
         }
 
         [HttpPost]
@@ -89,22 +90,13 @@ namespace PIK_Knjizara.Controllers
         {
             if (ModelState.IsValid)
             {
-                book.Book = repo.LoadBook(book.IdBook);
+                book.Book = repo.LoadBook(book.BookId);
                 book.User = (User)Session["user"];
-                repo.AddBorrow(book);
-                return RedirectToAction("Borrowed", book);
+                book.Payed = false;
+                int id = repo.AddBorrow(book);
+                return RedirectToAction("Borrowed", "BookPayment", id);
             }
-            return RedirectToAction("BorrowBook", book.IdBook);
-        }
-
-        public ActionResult Bought(GetBook book)
-        {
-            return View(book);
-        }
-
-        public ActionResult Borrowed(GetBook book)
-        {
-            return View(book);
+            return RedirectToAction("BorrowBook", book.BookId);
         }
 
         public ActionResult AddBook()

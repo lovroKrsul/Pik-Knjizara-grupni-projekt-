@@ -134,6 +134,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AuthorController.cs" />
     <Compile Include="Controllers\BookController.cs" />
+    <Compile Include="Controllers\BookPaymentController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
@@ -294,7 +295,7 @@
     <Content Include="Views\Search\BookSearch.cshtml" />
     <Content Include="Views\Search\AuthorSearch.cshtml" />
     <Content Include="Views\Shared\_GetAuthors.cshtml" />
-    <Content Include="Views\Book\_Book.cshtml" />
+    <Content Include="Views\Shared\_Book.cshtml" />
     <Content Include="Views\Book\UpdateBook.cshtml" />
     <Content Include="Views\WorkerDashboard\ReturnBooks.cshtml" />
     <Content Include="Views\WorkerDashboard\ReturnBook.cshtml" />
@@ -302,10 +303,12 @@
     <Content Include="Views\User\_BorrowedBooksUser.cshtml" />
     <Content Include="Views\Home\_UserReturns.cshtml" />
     <Content Include="Views\Author\Index.cshtml" />
-    <Content Include="Views\Book\Bought.cshtml" />
-    <Content Include="Views\Book\Borrowed.cshtml" />
+    <Content Include="Views\BookPayment\Bought.cshtml" />
+    <Content Include="Views\BookPayment\Borrowed.cshtml" />
     <Content Include="Views\Book\BuyBook.cshtml" />
     <Content Include="Views\Book\BorrowBook.cshtml" />
+    <Content Include="Views\BookPayment\PaymentBuy.cshtml" />
+    <Content Include="Views\BookPayment\PaymentBorrow.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -68,6 +68,7 @@ namespace PIK_Knjizara.Controllers
 
                 if (authUser == null)
                 {
+                    ViewBag.NoUser = "Provjerite upisane podatke";
                     return LogIn();
                 }
 

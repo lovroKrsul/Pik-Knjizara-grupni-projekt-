@@ -1,6 +1,3 @@
-
-
-
 ---------------------------------------------------------Procedures----------------------------------------------
 
 USE PraKnjizara
@@ -331,32 +328,76 @@ GO
 
 CREATE OR ALTER PROC AddPurchase
 	@InStorePayment BIT,
+	@Payed BIT,
 	@Delivery BIT,
 	@UserId INT,
 	@BookId INT
 AS
 BEGIN
-	INSERT INTO Purchase (CreatedAt, InStorePayment, Delivery, UserId, BookID)
-	VALUES (GETDATE(), @InStorePayment, @Delivery, @UserId, @BookId)
 	UPDATE Book
 	SET InStock = InStock - 1
 	WHERE IDBook = @BookId
+	INSERT INTO Purchase (CreatedAt, InStorePayment, Payed, Delivery, UserId, BookID)
+	VALUES (GETDATE(), @InStorePayment, @Payed, @Delivery, @UserId, @BookId)
+	SELECT SCOPE_IDENTITY() AS IdPurchase
 END
 GO
 
 CREATE OR ALTER PROC AddBorrow
 	@ReturnDate DATETIME,
 	@InStorePayment BIT,
+	@Payed BIT,
 	@Delivery BIT,
 	@UserId INT,
 	@BookId INT
 AS
 BEGIN
-	INSERT INTO BorrowBook (CreatedAt, ReturnDate, InStorePayment, Delivery, BookstoreId, UserId, BookId)
-	VALUES (GETDATE(), @ReturnDate, @InStorePayment, @Delivery, 1, @UserId, @BookId)
 	UPDATE Book
 	SET InStock = InStock - 1
 	WHERE IDBook = @BookId
+	INSERT INTO BorrowBook (CreatedAt, ReturnDate, InStorePayment, Payed, Delivery, BookstoreId, UserId, BookId)
+	VALUES (GETDATE(), @ReturnDate, @InStorePayment, @Payed, @Delivery, 1, @UserId, @BookId)
+	SELECT SCOPE_IDENTITY() AS IdBorrow
+END
+GO
+
+CREATE OR ALTER PROC PayPurchase
+	@IdPurchase INT
+AS 
+BEGIN
+	UPDATE Purchase
+	SET Payed = 1
+	WHERE IDPurchase = @IdPurchase
+END
+GO
+
+CREATE OR ALTER PROC PayBorrow
+	@IdBorrow INT
+AS 
+BEGIN
+	UPDATE BorrowBook
+	SET Payed = 1
+	WHERE IDBorrow = @IdBorrow
+END
+GO
+
+CREATE OR ALTER PROC LoadPurchase
+	@IdPurchase INT
+AS
+BEGIN
+	SELECT *
+	FROM Purchase
+	WHERE IDPurchase = @IdPurchase
+END
+GO
+
+CREATE OR ALTER PROC LoadBorrow
+	@IdBorrow INT
+AS
+BEGIN
+	SELECT *
+	FROM BorrowBook
+	WHERE IDBorrow = @IdBorrow
 END
 GO
 
