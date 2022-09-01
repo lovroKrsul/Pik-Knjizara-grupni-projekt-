@@ -73,7 +73,7 @@ namespace PIK_Knjizara.Controllers
                 if ((_allUsers.FirstOrDefault().Email = user.Email) != null)
                 {
                     repo.ResetPassword(user as User);
-                    RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Home");
                 }
             }
             return View();
