@@ -20,9 +20,6 @@ namespace PIK_Knjizara.Controllers
 
 
         //tbpqjctqpthcrfty
-        private void pero()
-        {
-        }
         public void SendMail(string SMTPServer, int SMTP_Port, string From, string Password, string To, string Subject, string Body, string[] FileNames)
         {
             var smtpClient = new SmtpClient(SMTPServer, SMTP_Port)
@@ -31,7 +28,7 @@ namespace PIK_Knjizara.Controllers
                 UseDefaultCredentials = false,
                 EnableSsl = true
             };
-            smtpClient.Credentials = new NetworkCredential(From, Password); //Use the new password, generated from google!
+            smtpClient.Credentials = new NetworkCredential(From, Password); 
 
             var message = new MailMessage
             {
