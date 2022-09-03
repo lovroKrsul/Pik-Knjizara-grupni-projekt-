@@ -4,8 +4,12 @@ using PIK_Library.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
+using System.Net;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
+using System.Security.Policy;
 
 namespace PIK_Knjizara.Controllers
 {
@@ -13,6 +17,31 @@ namespace PIK_Knjizara.Controllers
     {
         IRepo repo = (System.Web.HttpContext.Current.Application["database"] as IRepo);
         private IList<User> _allUsers;
+
+
+        //tbpqjctqpthcrfty
+        private void pero()
+        {
+        }
+        public void SendMail(string SMTPServer, int SMTP_Port, string From, string Password, string To, string Subject, string Body, string[] FileNames)
+        {
+            var smtpClient = new SmtpClient(SMTPServer, SMTP_Port)
+            {
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                EnableSsl = true
+            };
+            smtpClient.Credentials = new NetworkCredential(From, Password); //Use the new password, generated from google!
+
+            var message = new MailMessage
+            {
+                From = new MailAddress(From, "PiK Knjizara"),
+                Subject = Subject,
+                Body = Body.ToString(),
+            };
+            message.To.Add(new MailAddress(To, To));
+            smtpClient.Send(message);
+        }
 
         // GET: User
         public ActionResult Index()
@@ -43,18 +72,25 @@ namespace PIK_Knjizara.Controllers
             if (ModelState.IsValid)
             {
                 _allUsers = repo.LoadUsers();
-
+                
                 if ((_allUsers.FirstOrDefault().Email = user.Email) != null)
                 {
-                    return RedirectToAction("ConfirmPasswordReset", "User");
+                    User u = repo.LoadUser(user.Email);
+                SendMail("smtp.gmail.com", 587, "skvorc.leo@gmail.com",
+                            "tbpqjctqpthcrfty",
+                    user.Email, "Library: Recover password", "http://localhost:64277/User/ConfirmPasswordReset/" + u.IdUser, null);
+                return RedirectToAction("Index", "Home");
                 }
             }
             return View();
         }
 
-        public ActionResult ConfirmPasswordReset()
+        public ActionResult ConfirmPasswordReset(int id)
         {
-            return View();
+            PasswordResetVM resetVM = new PasswordResetVM();
+            User u = repo.LoadUserId(id);
+            resetVM.E_mail = u.Email;
+            return View(resetVM);
         }
 
         [HttpPost]
